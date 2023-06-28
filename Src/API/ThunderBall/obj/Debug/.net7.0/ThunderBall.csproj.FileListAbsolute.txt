@@ -1,0 +1,17 @@
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\bin\Debug\.net7.0\ThunderBall.deps.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\bin\Debug\.net7.0\ThunderBall.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\bin\Debug\.net7.0\ThunderBall.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\bin\Debug\.net7.0\Domain.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\bin\Debug\.net7.0\Services.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\bin\Debug\.net7.0\Domain.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\bin\Debug\.net7.0\Services.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\refint\ThunderBall.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ThunderBall.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\ThunderBall\obj\Debug\.net7.0\ref\ThunderBall.dll

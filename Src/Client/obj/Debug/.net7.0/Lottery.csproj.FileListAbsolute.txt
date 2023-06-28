@@ -1,0 +1,64 @@
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\appsettings.Development.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\appsettings.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Lottery.staticwebassets.runtime.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Lottery.exe
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Lottery.deps.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Lottery.runtimeconfig.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Lottery.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Lottery.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Newtonsoft.Json.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\bin\Debug\.net7.0\Microsoft.WindowsAzure.Storage.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.RazorAssemblyInfo.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.RazorAssemblyInfo.cs
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\staticwebassets\msbuild.Lottery.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\staticwebassets\msbuild.build.Lottery.props
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\staticwebassets\msbuild.buildMultiTargeting.Lottery.props
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\staticwebassets\msbuild.buildTransitive.Lottery.props
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\staticwebassets.pack.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\staticwebassets.build.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\staticwebassets.development.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\scopedcss\bundle\Lottery.styles.css
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\refint\Lottery.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\Lottery.genruntimeconfig.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Debug\.net7.0\ref\Lottery.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\appsettings.Development.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\appsettings.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.staticwebassets.runtime.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.exe
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.deps.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.runtimeconfig.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Newtonsoft.Json.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Microsoft.WindowsAzure.Storage.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.RazorAssemblyInfo.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.RazorAssemblyInfo.cs
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\staticwebassets\msbuild.Lottery.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\staticwebassets\msbuild.build.Lottery.props
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\staticwebassets\msbuild.buildMultiTargeting.Lottery.props
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\staticwebassets\msbuild.buildTransitive.Lottery.props
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\staticwebassets.pack.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\staticwebassets.build.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\staticwebassets.development.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\scopedcss\bundle\Lottery.styles.css
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\refint\Lottery.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.genruntimeconfig.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\ref\Lottery.dll

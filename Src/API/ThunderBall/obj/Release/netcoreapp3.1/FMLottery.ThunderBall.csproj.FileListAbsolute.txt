@@ -1,0 +1,14 @@
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\bin\Release\netcoreapp3.1\FMLottery.ThunderBall.deps.json
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\bin\Release\netcoreapp3.1\FMLottery.ThunderBall.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\bin\Release\netcoreapp3.1\FMLottery.ThunderBall.pdb
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\bin\Release\netcoreapp3.1\FMLottery.Core.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\bin\Release\netcoreapp3.1\FMLottery.Services.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\bin\Release\netcoreapp3.1\FMLottery.Core.pdb
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\bin\Release\netcoreapp3.1\FMLottery.Services.pdb
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\obj\Release\netcoreapp3.1\FMLottery.ThunderBall.csprojAssemblyReference.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\obj\Release\netcoreapp3.1\FMLottery.ThunderBall.csproj.CoreCompileInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\obj\Release\netcoreapp3.1\FMLottery.ThunderBall.AssemblyInfoInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\obj\Release\netcoreapp3.1\FMLottery.ThunderBall.AssemblyInfo.cs
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\obj\Release\netcoreapp3.1\FMLottery.ThunderBall.csproj.CopyComplete
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\obj\Release\netcoreapp3.1\FMLottery.ThunderBall.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.ThunderBall\obj\Release\netcoreapp3.1\FMLottery.ThunderBall.pdb

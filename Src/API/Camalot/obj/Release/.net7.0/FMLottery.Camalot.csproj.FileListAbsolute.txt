@@ -1,0 +1,15 @@
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Release\.net7.0\FMLottery.Camalot.deps.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Release\.net7.0\FMLottery.Camalot.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Release\.net7.0\FMLottery.Camalot.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Release\.net7.0\FMLottery.Core.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Release\.net7.0\FMLottery.Core.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\refint\FMLottery.Camalot.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\FMLottery.Camalot.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Release\.net7.0\ref\FMLottery.Camalot.dll

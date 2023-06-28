@@ -1,0 +1,9 @@
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\bin\Release\netcoreapp3.1\FMLottery.Core.deps.json
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\bin\Release\netcoreapp3.1\FMLottery.Core.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\bin\Release\netcoreapp3.1\FMLottery.Core.pdb
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Release\netcoreapp3.1\FMLottery.Core.csprojAssemblyReference.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Release\netcoreapp3.1\FMLottery.Core.csproj.CoreCompileInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Release\netcoreapp3.1\FMLottery.Core.AssemblyInfoInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Release\netcoreapp3.1\FMLottery.Core.AssemblyInfo.cs
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Release\netcoreapp3.1\FMLottery.Core.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Release\netcoreapp3.1\FMLottery.Core.pdb

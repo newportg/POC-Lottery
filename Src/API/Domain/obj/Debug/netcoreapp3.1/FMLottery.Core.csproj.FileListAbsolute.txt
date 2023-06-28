@@ -1,0 +1,10 @@
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\bin\Debug\netcoreapp3.1\FMLottery.Core.deps.json
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\bin\Debug\netcoreapp3.1\FMLottery.Core.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\bin\Debug\netcoreapp3.1\FMLottery.Core.pdb
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Debug\netcoreapp3.1\FMLottery.Core.csproj.AssemblyReference.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Debug\netcoreapp3.1\FMLottery.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Debug\netcoreapp3.1\FMLottery.Core.AssemblyInfoInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Debug\netcoreapp3.1\FMLottery.Core.AssemblyInfo.cs
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Debug\netcoreapp3.1\FMLottery.Core.csproj.CoreCompileInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Debug\netcoreapp3.1\FMLottery.Core.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Core\obj\Debug\netcoreapp3.1\FMLottery.Core.pdb

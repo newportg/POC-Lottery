@@ -1,0 +1,5 @@
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\netcoreapp3.1\FMLottery.OData.csproj.AssemblyReference.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\netcoreapp3.1\FMLottery.OData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\netcoreapp3.1\FMLottery.OData.AssemblyInfoInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\netcoreapp3.1\FMLottery.OData.AssemblyInfo.cs
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\netcoreapp3.1\FMLottery.OData.csproj.CoreCompileInputs.cache

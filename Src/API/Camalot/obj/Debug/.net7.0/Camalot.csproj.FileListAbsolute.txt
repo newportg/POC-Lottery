@@ -1,0 +1,15 @@
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\bin\Debug\.net7.0\Camalot.deps.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\bin\Debug\.net7.0\Camalot.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\bin\Debug\.net7.0\Camalot.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\bin\Debug\.net7.0\Domain.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\bin\Debug\.net7.0\Domain.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\refint\Camalot.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\Camalot.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\Camalot\obj\Debug\.net7.0\ref\Camalot.dll

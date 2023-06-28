@@ -1,0 +1,15 @@
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\bin\Debug\.net7.0\OData.deps.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\bin\Debug\.net7.0\OData.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\bin\Debug\.net7.0\OData.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\bin\Debug\.net7.0\Domain.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\bin\Debug\.net7.0\Domain.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\refint\OData.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\OData.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\OData\obj\Debug\.net7.0\ref\OData.dll

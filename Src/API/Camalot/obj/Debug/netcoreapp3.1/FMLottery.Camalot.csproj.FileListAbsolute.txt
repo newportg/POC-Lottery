@@ -1,0 +1,13 @@
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Debug\netcoreapp3.1\FMLottery.Camalot.deps.json
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Debug\netcoreapp3.1\FMLottery.Camalot.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Debug\netcoreapp3.1\FMLottery.Camalot.pdb
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Debug\netcoreapp3.1\FMLottery.Core.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\bin\Debug\netcoreapp3.1\FMLottery.Core.pdb
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.csproj.AssemblyReference.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.AssemblyInfoInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.AssemblyInfo.cs
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.csproj.CoreCompileInputs.cache
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.csproj.CopyComplete
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.dll
+C:\Users\NewportG\source\Azure\FunctionMonkey\FMLottery\FMLottery.Camalot\obj\Debug\netcoreapp3.1\FMLottery.Camalot.pdb

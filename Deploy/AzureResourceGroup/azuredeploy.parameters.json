@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "para_target_env": { "value": "vse" },
+    "para_appFamily_name": { "value": "poc" },
+    "para_application_name": { "value": "Lottery" },
+    "para_application_name2": { "value": "ThunderBall" },
+    "para_lotterytables": { "value": "ThunderBall,Lotto,Predictions" },
+
+    "para_svcPlanSku": { "value": "Dynamic" },
+    "para_svcPlanSize": { "value": "Y1" },
+    "para_svcPlanFamily": { "value": "Y" },
+    "para_svcPlanCapacity": { "value": "0" },
+
+    "para_alwaysOn": { "value": false },
+    "para_funcState": { "value": "Start" },
+
+    "para_kvSecretsObject": {
+      "value": {
+        "secrets": [
+          {
+            "secretName": "HubSqlConnection",
+            "secretValue": "Server=HubCharlieSQL01.SA1.KF-INT.COM;Database=Hub.IntegrationTests.cdd-drl-dwn;Integrated Security=false;User ID=sa;Password=$Kf@admin;TrustServerCertificate=true;"
+          }
+        ]
+      }
+    }
+  }
+}

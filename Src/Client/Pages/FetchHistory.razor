@@ -1,0 +1,136 @@
+﻿@page "/fetchhistory"
+
+@using Lottery.Data
+@inject IThunderBallService ThunderBallService
+
+<h1>ThunderBall History</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (items == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("DrawDate"))">DrawDate</span>
+                    <span class="fa @(GetSortStyle("DrawDate"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Ball1"))">Ball1</span>
+                    <span class="fa @(GetSortStyle("Ball1"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Ball2"))">Ball2</span>
+                    <span class="fa @(GetSortStyle("Ball2"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Ball3"))">Ball3</span>
+                    <span class="fa @(GetSortStyle("Ball3"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Ball4"))">Ball4</span>
+                    <span class="fa @(GetSortStyle("Ball4"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Ball5"))">Ball5</span>
+                    <span class="fa @(GetSortStyle("Ball5"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Thunderball"))">Thunderball</span>
+                    <span class="fa @(GetSortStyle("Thunderball"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("BallSet"))">BallSet</span>
+                    <span class="fa @(GetSortStyle("BallSet"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Machine"))">Machine</span>
+                    <span class="fa @(GetSortStyle("Machine"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("DrawNumber"))">DrawNumber</span>
+                    <span class="fa @(GetSortStyle("DrawNumber"))"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var draw in items)
+            {
+                <tr>
+                    <td>@draw.DrawDate</td>
+                    <td>@draw.Ball1</td>
+                    <td>@draw.Ball2</td>
+                    <td>@draw.Ball3</td>
+                    <td>@draw.Ball4</td>
+                    <td>@draw.Ball5</td>
+                    <td>@draw.Thunderball</td>
+                    <td>@draw.BallSet</td>
+                    <td>@draw.Machine</td>
+                    <td>@draw.DrawNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    IList<ThunderBall> items = new List<ThunderBall>();
+    private bool IsSortedAscending;
+    private string CurrentSortColumn;
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await ThunderBallService.GetThunderballAsync();
+    }
+
+    private string GetSortStyle(string columnName)
+    {
+        if(CurrentSortColumn != columnName)
+        {
+            return string.Empty;
+        }
+        if(IsSortedAscending)
+        {
+            return "fa-sort-up";
+        }
+        else
+        {
+            return "fa-sort-down";
+        }
+    }
+
+    private void SortTable(string columnName)
+    {
+        //Sorting against a column that is not currently sorted against.
+        if (columnName != CurrentSortColumn)
+        {
+            //We need to force order by ascending on the new column
+            //This line uses reflection and will probably perform inefficiently in a production environment.
+            items = items.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            CurrentSortColumn = columnName;
+            IsSortedAscending = true;
+
+        }
+        else //Sorting against same column but in different direction
+        {
+            if (IsSortedAscending)
+            {
+            items = items.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            }
+            else
+            {
+                items = items.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            }
+
+            //Toggle this boolean
+            IsSortedAscending = !IsSortedAscending;
+        }
+    }
+}
+

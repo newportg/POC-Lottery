@@ -1,0 +1,30 @@
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\bin\Debug\.net7.0\FMLottery.OData.deps.json
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\bin\Debug\.net7.0\FMLottery.OData.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\bin\Debug\.net7.0\FMLottery.OData.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\bin\Debug\.net7.0\FMLottery.Core.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\bin\Debug\.net7.0\FMLottery.Core.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\refint\FMLottery.OData.dll
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.pdb
+C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\FMLottery.OData\obj\Debug\.net7.0\ref\FMLottery.OData.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\bin\Debug\.net7.0\FMLottery.OData.deps.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\bin\Debug\.net7.0\FMLottery.OData.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\bin\Debug\.net7.0\FMLottery.OData.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\bin\Debug\.net7.0\FMLottery.Core.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\bin\Debug\.net7.0\FMLottery.Core.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.csproj.AssemblyReference.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.AssemblyInfoInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.AssemblyInfo.cs
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.csproj.CoreCompileInputs.cache
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.csproj.CopyComplete
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\refint\FMLottery.OData.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\FMLottery.OData.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\API\FMLottery.OData\obj\Debug\.net7.0\ref\FMLottery.OData.dll
