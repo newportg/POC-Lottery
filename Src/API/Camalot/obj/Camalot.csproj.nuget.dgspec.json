@@ -18,7 +18,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          ".net7.0"
+          "net7.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {},
@@ -26,7 +26,7 @@
         },
         "frameworks": {
           "net7.0": {
-            "targetAlias": ".net7.0",
+            "targetAlias": "net7.0",
             "projectReferences": {
               "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj"
@@ -42,7 +42,7 @@
       },
       "frameworks": {
         "net7.0": {
-          "targetAlias": ".net7.0",
+          "targetAlias": "net7.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -107,7 +107,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          ".net7.0"
+          "net7.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {},
@@ -115,7 +115,7 @@
         },
         "frameworks": {
           "net7.0": {
-            "targetAlias": ".net7.0",
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -127,7 +127,7 @@
       },
       "frameworks": {
         "net7.0": {
-          "targetAlias": ".net7.0",
+          "targetAlias": "net7.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",

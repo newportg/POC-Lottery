@@ -62,3 +62,5 @@ C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Deb
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.pdb
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.genruntimeconfig.cache
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\ref\Lottery.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Flurl.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Flurl.Http.dll

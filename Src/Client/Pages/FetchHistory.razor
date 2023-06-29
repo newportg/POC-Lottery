@@ -63,12 +63,12 @@ else
             {
                 <tr>
                     <td>@draw.DrawDate</td>
-                    <td>@draw.Ball1</td>
-                    <td>@draw.Ball2</td>
-                    <td>@draw.Ball3</td>
-                    <td>@draw.Ball4</td>
-                    <td>@draw.Ball5</td>
-                    <td>@draw.Thunderball</td>
+                    <td>@draw.Balls[0]</td>
+                    <td>@draw.Balls[1]</td>
+                    <td>@draw.Balls[2]</td>
+                    <td>@draw.Balls[3]</td>
+                    <td>@draw.Balls[4]</td>
+                    <td>@draw.BonusBalls[0]</td>
                     <td>@draw.BallSet</td>
                     <td>@draw.Machine</td>
                     <td>@draw.DrawNumber</td>
@@ -80,7 +80,7 @@ else
 
 @code
 {
-    IList<ThunderBall> items = new List<ThunderBall>();
+    IList<Lottery> items = new List<Lottery>();
     private bool IsSortedAscending;
     private string CurrentSortColumn;
 

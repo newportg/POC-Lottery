@@ -5,8 +5,7 @@
     "para_target_env": { "value": "vse" },
     "para_appFamily_name": { "value": "poc" },
     "para_application_name": { "value": "Lottery" },
-    "para_application_name2": { "value": "ThunderBall" },
-    "para_lotterytables": { "value": "ThunderBall,Lotto,Predictions" },
+    "para_tableContainer": { "value": "ThunderBall" },
 
     "para_svcPlanSku": { "value": "Dynamic" },
     "para_svcPlanSize": { "value": "Y1" },

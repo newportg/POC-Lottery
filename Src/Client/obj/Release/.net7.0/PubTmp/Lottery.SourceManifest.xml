@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Users\NEWPORTG\source\Azure\FunctionMonkey\FMLottery\Lottery\obj\Release\.net7.0\PubTmp\Out\" />
+  <IisApp path="C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\" />
 </sitemanifest>

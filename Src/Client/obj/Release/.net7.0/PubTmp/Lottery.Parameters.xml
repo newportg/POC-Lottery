@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="app-poc-fmlottery-vse-ne" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\obj\\Release\\\.net7\.0\\PubTmp\\Out\\$" />
+  <parameter name="IIS Web Application Name" description="" value="app-poc-lottery-vse-ne" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\NEWPORTG\\source\\Personal\\Azure\ Functions\\POC-Lottery\\Src\\Client\\obj\\Release\\\.net7\.0\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

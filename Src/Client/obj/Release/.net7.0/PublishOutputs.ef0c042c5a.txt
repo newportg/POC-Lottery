@@ -1,0 +1,11 @@
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Lottery.exe
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\appsettings.Development.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\appsettings.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Lottery.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Lottery.deps.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Lottery.runtimeconfig.json
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Lottery.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Flurl.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Flurl.Http.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Microsoft.WindowsAzure.Storage.dll

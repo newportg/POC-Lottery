@@ -32,9 +32,6 @@
       "type": "string",
       "maxLength": 12
     },
-    "para_application_name2": {
-      "type": "string"
-    },
     "para_svcPlan": {
       "type": "string",
       "defaultValue": ""
@@ -94,7 +91,7 @@
       "type": "String",
       "defaultValue": "azurequeues"
     },
-    "para_lotterytables": {
+    "para_tableContainer": {
       "type": "String"
     }
   },
@@ -129,7 +126,6 @@
     "var_env_region": "[tolower(concat(parameters('para_target_env'), '-', parameters('para_acronym_region')))]",
 
     "var_application_name_delim": "[ tolower(concat( parameters('para_appFamily_name'), '-', parameters('para_application_name'), '-'))]",
-    "var_application_name2_delim": "[ tolower(concat( parameters('para_appFamily_name'), '-', parameters('para_application_name2'), '-'))]",
     "var_application_name": "[ tolower(concat(parameters('para_application_name')))]",
 
     "var_str_name": "[concat( variables('namingConvention').prefixes.Storage, take(tolower(parameters('para_application_name')), 12), tolower(parameters('para_target_env')), tolower(parameters('para_acronym_region')))]",
@@ -137,7 +133,6 @@
 
     "var_kv_name": "[concat(variables('namingConvention').prefixes.KeyVault, '-', variables('var_application_name_delim'),  variables('var_env_region_delim'))]",
     "var_azf_name": "[concat(variables('namingConvention').prefixes.FunctionApp, '-', variables('var_application_name_delim'),  variables('var_env_region_delim'))]",
-    "var_azf_name2": "[concat(variables('namingConvention').prefixes.FunctionApp, '-', variables('var_application_name2_delim'),  variables('var_env_region_delim'))]",
 
     "var_appin_name": "[concat(variables('namingConvention').prefixes.AppInsights, '-', variables('var_application_name_delim'),  variables('var_env_region_delim'))]",
     "var_id_name": "[concat(variables('namingConvention').prefixes.Identity, '-', variables('var_application_name_delim'),  variables('var_env_region_delim'))]",
@@ -424,16 +419,14 @@
         "WEBSITE_ENABLE_SYNC_UPDATE_SITE": "true",
         "WEBSITE_RUN_FROM_PACKAGE": 1,
         "FUNCTIONS_EXTENSION_VERSION": "~4",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
         "WEBSITE_CONTENTSHARE": "[variables('var_azf_name')]",
         "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('var_str_name'),';AccountKey=',listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
 
         "AzureStorageAcct": "[variables('var_str_name')]",
         "AzureStorageKey": "[concat(listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
 
-        "LotteryDatabase": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('var_str_name'),';AccountKey=',listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
-        "LotteryTables": "[parameters('para_lotterytables')]"
-
+        "TableContainer": "[parameters('para_tableContainer')]"
       },
       "tags": {
         "displayName": "[concat('Function Settings- ', variables('var_azf_name'))]",
@@ -441,176 +434,7 @@
         "project": "[parameters('para_application_name')]"
       },
       "type": "Microsoft.Web/sites/config"
-    },
-
-    // azf_name2
-    {
-      "apiVersion": "2021-02-01",
-      "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', variables('var_svcpln_name'))]",
-        "[concat('Microsoft.ManagedIdentity/userAssignedIdentities/', variables('var_id_name'))]"
-      ],
-      "identity": {
-        "type": "UserAssigned",
-        "userAssignedIdentities": {
-          "[variables('var_uaid_name')]": {}
-        }
-      },
-      "kind": "functionapp",
-      "location": "[resourceGroup().location]",
-      "name": "[variables('var_azf_name2')]",
-      "properties": {
-        "state": "[parameters('para_funcState')]",
-        "name": "[variables('var_azf_name2')]",
-        "keyVaultReferenceIdentity": "[variables('var_uaid_name')]",
-        "siteConfig": {
-          "alwaysOn": "[parameters('para_alwaysOn')]"
-        },
-        "netFrameworkVersion": "v6.0",
-        "clientAffinityEnabled": false,
-        "serverFarmId": "[variables('var_svcpln_name')]",
-        //        "hostingEnvironment": "[variables('var_svcpln_env')]",
-        "hostNameSslStates": [],
-        "httpsOnly": true
-      },
-      "resources": [
-      ],
-      "tags": {
-        "displayName": "[concat('Function - ', variables('var_azf_name2'))]",
-        "environment": "[parameters('para_target_env')]",
-        "project": "[parameters('para_application_name')]"
-      },
-      "type": "Microsoft.Web/sites"
-    },
-    {
-      "apiVersion": "2021-01-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('var_azf_name2'))]",
-        "[resourceId('Microsoft.Web/sites', variables('var_app_name'))]"
-      ],
-      "location": "[resourceGroup().location]",
-      "name": "[concat(variables('var_azf_name2'), '/web')]",
-      "properties": {
-        "alwaysOn": "[parameters('para_alwaysOn')]",
-        "netFrameworkVersion": "v6.0",
-        //"vnetname": "[parameters('para_vnet_name')]"
-        "cors": {
-          "allowedOrigins": [
-            "[concat('https://',reference(resourceId('Microsoft.Web/sites', variables('var_app_name')),'2022-03-01').defaultHostName )]",
-            "http://localhost:4200"
-          ],
-          "supportCredentials": true
-        },
-        "apiDefinition": {
-          "url": "[concat('https://', reference(concat('Microsoft.Web/sites/', variables('var_azf_name2'))).defaultHostName, '/api/swagger.json')]"
-        }
-      },
-      "tags": {
-        "displayName": "[concat('Function Web- ', variables('var_azf_name2'))]",
-        "environment": "[parameters('para_target_env')]",
-        "project": "[parameters('para_application_name')]"
-      },
-      "type": "Microsoft.Web/sites/config"
-    },
-    {
-      "apiVersion": "2021-01-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('var_azf_name2'))]"
-      ],
-      "location": "[resourceGroup().location]",
-      "name": "[concat(variables('var_azf_name2'), '/metadata')]",
-      "properties": {
-        "CURRENT_STACK": "dotnet"
-      },
-      "tags": {
-        "displayName": "Az Function metadata",
-        "environment": "[parameters('para_target_env')]",
-        "project": "[parameters('para_application_name')]"
-      },
-      "type": "Microsoft.Web/sites/config"
-    },
-    {
-      "apiVersion": "2021-01-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('var_azf_name2'))]"
-      ],
-      "location": "[resourceGroup().location]",
-      "name": "[concat(variables('var_azf_name2'),'/appsettings')]",
-      "properties": {
-        "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('var_str_name'),';AccountKey=',listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
-        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('microsoft.insights/components/', variables('var_appin_name'))).InstrumentationKey]",
-        "WEBSITE_ENABLE_SYNC_UPDATE_SITE": "true",
-        "WEBSITE_RUN_FROM_PACKAGE": 1,
-        "FUNCTIONS_EXTENSION_VERSION": "~4",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "WEBSITE_CONTENTSHARE": "[variables('var_azf_name2')]",
-        "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('var_str_name'),';AccountKey=',listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
-
-        "AzureStorageAcct": "[variables('var_str_name')]",
-        "AzureStorageKey": "[concat(listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
-
-        "LotteryDatabase": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('var_str_name'),';AccountKey=',listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
-        "LotteryTables": "[parameters('para_lotterytables')]"
-
-      },
-      "tags": {
-        "displayName": "[concat('Function Settings- ', variables('var_azf_name2'))]",
-        "environment": "[parameters('para_target_env')]",
-        "project": "[parameters('para_application_name')]"
-      },
-      "type": "Microsoft.Web/sites/config"
     }
-
-
-    ////{
-    //  "apiVersion": "2018-07-01-preview",
-    //  "dependsOn": [
-    //    "[resourceId('Microsoft.Storage/storageAccounts', variables('var_str_name'))]"
-    //  ],
-    //  "location": "[resourceGroup().location]",
-    //  "name": "[parameters('para_str_tbl_connection_name')]",
-    //  "properties": {
-    //    "api": {
-    //      "id": "[variables('var_str_tbl_id')]"
-    //    },
-    //    "parameterValues": {
-    //      "storageAccount": "[variables('var_str_name')]",
-    //      "sharedKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('var_str_name')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
-    //    },
-    //    "testLinks": [
-    //      {
-    //        "requestUri": "[uri('https://management.azure.com:443/', concat('subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Web/connections/', variables('var_str_name'), '/extensions/proxy/testconnection?api-version=2018-07-01-preview'))]",
-    //        "method": "get"
-    //      }
-    //    ]
-    //  },
-    //  "tags": {
-    //    "displayName": "Table-Storage"
-    //  },
-    //  "type": "Microsoft.Web/connections"
-    //},
-    //{
-    //  "apiVersion": "2018-07-01-preview",
-    //  "dependsOn": [
-    //    "[resourceId('Microsoft.Storage/storageAccounts', variables('var_str_name'))]"
-    //  ],
-    //  "location": "[resourceGroup().location]",
-    //  "name": "[parameters('para_str_que_connection_name')]",
-    //  "properties": {
-    //    "api": {
-    //      "id": "[variables('var_str_que_id')]"
-    //    },
-    //    "parameterValues": {
-    //      "storageAccount": "[variables('var_str_name')]",
-    //      "sharedKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('var_str_name')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
-    //      //"accessKey": "[listKeys(variables('var_str_que_id'), '2018-07-01-preview').keys[0].value]"
-    //    }
-    //  },
-    //  "tags": {
-    //    "displayName": "Queue-Storage"
-    //  },
-    //  "type": "Microsoft.Web/connections"
-    //}
   ],
   "outputs": {}
 }

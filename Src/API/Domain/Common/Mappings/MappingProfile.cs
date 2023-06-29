@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using Rules;
+using Domain.Rules;
 
 namespace Domain.Common.Mappings
 {

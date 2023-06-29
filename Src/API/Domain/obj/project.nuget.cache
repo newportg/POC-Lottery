@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ysaroj7KTXqD66BrYoPKPpZyuaBksX8pQRvGZJhoQLky+Kcn32y64Lxi5ZDtaMQYTF1Akzctu3OvbKeFRfe/pg==",
+  "dgSpecHash": "klt9l3xLk/aTd1XlejuLk5jfpMq87v4br3Hq5CLFrye3A2hBbtxvu3srtq1OUhvnpgWjmYxQ1YEI8tvNSj/rQQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj",
   "expectedPackageFiles": [

@@ -1,4 +1,4 @@
-﻿namespace Rules
+﻿namespace Domain.Rules
 {
     public class ThunderBallRules
     {

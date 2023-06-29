@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "e5qPCLgHDJsn/QYPK6KhSBT6t3bhkeRSSAo5YUFzU2M=",
+  "Hash": "DV+z4ONpEoQM1/qPtzN0xsByzd9BJpe3IZ9TEZcqUlI=",
   "Source": "Lottery",
   "BasePath": "_content/Lottery",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Lottery\\wwwroot",
       "Source": "Lottery",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -34,10 +34,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -51,10 +51,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\css\\site.css",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\favicon.ico",
       "SourceId": "Lottery",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Azure\\FunctionMonkey\\FMLottery\\Lottery\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\wwwroot\\",
       "BasePath": "_content/Lottery",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",

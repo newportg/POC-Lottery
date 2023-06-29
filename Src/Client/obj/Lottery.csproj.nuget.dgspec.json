@@ -40,6 +40,10 @@
         "net7.0": {
           "targetAlias": ".net7.0",
           "dependencies": {
+            "Flurl.Http": {
+              "target": "Package",
+              "version": "[3.2.4, )"
+            },
             "WindowsAzure.Storage": {
               "target": "Package",
               "version": "[9.3.3, )"

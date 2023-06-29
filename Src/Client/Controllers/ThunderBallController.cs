@@ -15,8 +15,9 @@ namespace Lottery.Controllers
         {
             this.service = service;
         }
+
         [HttpGet]
-        public async Task<List<ThunderBall>> Get()
+        public async Task<List<Lottery.Data.Lottery>> Get()
         {
             var model = await service.GetThunderballAsync();
             return model.ToList();
