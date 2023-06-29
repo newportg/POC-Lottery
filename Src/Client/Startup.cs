@@ -24,13 +24,6 @@ namespace Lottery
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
 
-            services.AddScoped<IAzureTableStorage<ThunderBall>>(factory =>
-            {
-                return new AzureTableStorage<ThunderBall>(
-                    new AzureTableSettings(
-                        connectionString: Configuration["LottoConnectionString"],
-                        tableName: Configuration["TableName"]));
-            });
             services.AddScoped<IThunderBallService, ThunderBallService>();
         }
 
