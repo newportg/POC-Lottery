@@ -41,7 +41,6 @@ C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Rel
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Release\.net7.0\Flurl.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Release\.net7.0\Flurl.Http.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Release\.net7.0\Newtonsoft.Json.dll
-C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Release\.net7.0\Microsoft.WindowsAzure.Storage.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\Lottery.csproj.AssemblyReference.cache
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\Lottery.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\Lottery.AssemblyInfoInputs.cache

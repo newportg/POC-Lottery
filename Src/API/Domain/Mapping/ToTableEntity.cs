@@ -20,6 +20,16 @@ namespace Domain.Mapping
                 .ForMember(dst => dst.DrawDate, opt => opt.MapFrom(src => DrawDate(src)))
                 .ForMember(dst => dst.DrawNumber, opt => opt.MapFrom(src => src.DrawNumber))
                 .ForMember(dst => dst.Machine, opt => opt.MapFrom(src => src.Machine));
+
+            CreateMap<Ticket, ThunderBallEntity>()
+                .ForMember(dst => dst.RowKey, opt => opt.MapFrom(src => src.DrawNumber))
+                .ForMember(dst => dst.Ball1, opt => opt.MapFrom(src => src.Balls[0]))
+                .ForMember(dst => dst.Ball2, opt => opt.MapFrom(src => src.Balls[1]))
+                .ForMember(dst => dst.Ball3, opt => opt.MapFrom(src => src.Balls[2]))
+                .ForMember(dst => dst.Ball4, opt => opt.MapFrom(src => src.Balls[3]))
+                .ForMember(dst => dst.Ball5, opt => opt.MapFrom(src => src.Balls[4]))
+                .ForMember(dst => dst.Thunderball, opt => opt.MapFrom(src => src.ThunderBall))
+                .ForMember(dst => dst.DrawNumber, opt => opt.MapFrom(src => src.DrawNumber));
         }
 
         private string DrawDate(LotteryDto src)

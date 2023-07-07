@@ -8,4 +8,3 @@ C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Rel
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Flurl.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Flurl.Http.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Newtonsoft.Json.dll
-C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Release\.net7.0\PubTmp\Out\Microsoft.WindowsAzure.Storage.dll

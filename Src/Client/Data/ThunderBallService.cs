@@ -11,7 +11,8 @@ namespace Lottery.Data
         Task<Dictionary<int, int>> GetHotBallsAsync();
         Task<Dictionary<int, int>> GetDrawTotalsAsync();
         Task<Dictionary<int, int>> GetDeltasAsync();
-        Task<List<int[]>> GetTicketsAsync();
+        Task<List<Ticket>> GetTicketsAsync();
+        Task<bool> SaveGuesses(List<Ticket> tickets);
     }
 
     public class ThunderBallService : IThunderBallService
@@ -52,11 +53,22 @@ namespace Lottery.Data
             return data;
         }
 
-        public async Task<List<int[]>> GetTicketsAsync()
+        public async Task<List<Ticket>> GetTicketsAsync()
         {
             Url url = new("https://func-poc-lottery-vse-ne.azurewebsites.net/api/GetTickets");
-            var data = await url.GetJsonAsync<List<int[]>>();
+            var data = await url.GetJsonAsync<List<Ticket>>();
             return data;
+        }
+
+        public async Task<bool> SaveGuesses(List<Ticket> tickets)
+        {
+            Url url = new("https://func-poc-lottery-vse-ne.azurewebsites.net/api/SaveTickets");
+            var res = await url.PostJsonAsync(tickets);
+            if( res != null && res.StatusCode == 200) 
+            { 
+                return true; 
+            }
+            return false;
         }
     }
 

@@ -93,6 +93,9 @@
     },
     "para_tableContainer": {
       "type": "String"
+    },
+    "para_guessContainer": {
+      "type": "String"
     }
   },
   "variables": {
@@ -426,7 +429,8 @@
         "AzureStorageAcct": "[variables('var_str_name')]",
         "AzureStorageKey": "[concat(listKeys(variables('var_str_resId'),'2015-05-01-preview').key1) ]",
 
-        "TableContainer": "[parameters('para_tableContainer')]"
+        "TableContainer": "[parameters('para_tableContainer')]",
+        "GuessContainer": "[parameters('para_guessContainer')]"
       },
       "tags": {
         "displayName": "[concat('Function Settings- ', variables('var_azf_name'))]",

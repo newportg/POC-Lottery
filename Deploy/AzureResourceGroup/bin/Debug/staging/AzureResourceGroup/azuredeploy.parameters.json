@@ -6,6 +6,7 @@
     "para_appFamily_name": { "value": "poc" },
     "para_application_name": { "value": "Lottery" },
     "para_tableContainer": { "value": "ThunderBall" },
+    "para_guessContainer": { "value": "ThunderBallGuess" },
 
     "para_svcPlanSku": { "value": "Dynamic" },
     "para_svcPlanSize": { "value": "Y1" },

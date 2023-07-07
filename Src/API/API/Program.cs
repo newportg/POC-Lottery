@@ -13,6 +13,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Library.Azure.Odata;
+using AutoMapper;
+using System.ComponentModel;
+using Domain.Models;
 
 namespace API
 {
@@ -70,14 +73,19 @@ namespace API
                         var act = Environment.GetEnvironmentVariable("AzureStorageAcct");
                         var key = Environment.GetEnvironmentVariable("AzureStorageKey");
                         var con = Environment.GetEnvironmentVariable("TableContainer");
+                        var gus = Environment.GetEnvironmentVariable("GuessContainer");
                         var log = container.GetRequiredService<ILogger<TableStore>>();
                         Dictionary<string, ITableStore> dict = new Dictionary<string, ITableStore>(System.StringComparer.OrdinalIgnoreCase)
                         {
-                            { con, new TableStore(act, key, con, log) }
+                            { con, new TableStore(act, key, con, log) },
+                            { gus, new TableStore(act, key, gus, log) }
                         };
 
                         return dict;
                     });
+
+                    services.AddSingleton<IHelper, Helper>();
+                    services.AddSingleton<IGuessHelper, GuessHelper>();
                 })
                 .Build();
 

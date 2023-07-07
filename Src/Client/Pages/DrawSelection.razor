@@ -15,6 +15,10 @@ else
         <thead>
             <tr>
                 <th>
+                    <span>Draw Number</span>
+                </th>
+
+                <th>
                     <span class="sort-link" @onclick="@(()=>SortTable("Ball1"))">Ball1</span>
                     <span class="fa @(GetSortStyle("Ball1"))"></span>
                 </th>
@@ -48,17 +52,20 @@ else
             @foreach (var draw in tickets)
             {
                 <tr>
-                    <td>@draw[0]</td>
-                    <td>@draw[1]</td>
-                    <td>@draw[2]</td>
-                    <td>@draw[3]</td>
-                    <td>@draw[4]</td>
-                    <td>@draw[5]</td>
-                    <td>@draw[6]</td>
+                    <td>@draw.DrawNumber</td>
+                    <td>@draw.Balls[0]</td>
+                    <td>@draw.Balls[1]</td>
+                    <td>@draw.Balls[2]</td>
+                    <td>@draw.Balls[3]</td>
+                    <td>@draw.Balls[4]</td>
+                    <td>@draw.ThunderBall</td>
+                    <td>@draw.DrawTotal</td>
                 </tr>
             }
         </tbody>
     </table>
+
+    <button class="btn btn-primary" @onclick="SaveGuesses">Save Guesses</button>
 
     @((MarkupString)hotBalls)
     @((MarkupString)hotBallsLinear)
@@ -83,13 +90,12 @@ else
             }
         </tbody>
     </table>
-
-
 }
 
 @code
 {
-    List<int[]> tickets = new List<int[]>();
+    //List<int[]> tickets = new List<int[]>();
+    List<Ticket> tickets = new List<Ticket>();
     List<KeyValuePair<int, int>> hot = new List<KeyValuePair<int, int>>();
     IList<Lottery> items = new List<Lottery>();
 
@@ -116,6 +122,11 @@ else
         tickets = await ThunderBallService.GetTicketsAsync();
 
         //tickets = td.GenerateTickets();
+    }
+
+    private void SaveGuesses()
+    {
+        ThunderBallService.SaveGuesses(tickets);
     }
 
     public string HotBalls(Dictionary<int,int> dic)

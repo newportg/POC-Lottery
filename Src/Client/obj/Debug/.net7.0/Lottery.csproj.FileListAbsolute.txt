@@ -38,8 +38,9 @@ C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Deb
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.runtimeconfig.json
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Lottery.pdb
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Flurl.dll
+C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Flurl.Http.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Newtonsoft.Json.dll
-C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Microsoft.WindowsAzure.Storage.dll
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.csproj.AssemblyReference.cache
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.AssemblyInfoInputs.cache
@@ -62,5 +63,3 @@ C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Deb
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.pdb
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\Lottery.genruntimeconfig.cache
 C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\obj\Debug\.net7.0\ref\Lottery.dll
-C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Flurl.dll
-C:\Users\NEWPORTG\source\Personal\Azure Functions\POC-Lottery\Src\Client\bin\Debug\.net7.0\Flurl.Http.dll

@@ -34,6 +34,7 @@ namespace API
 
         [Function("DrawUpdate")]
         [OpenApiOperation(operationId: "DrawUpdate")]
+        [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.OK, Description = "The OK response")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
         {
