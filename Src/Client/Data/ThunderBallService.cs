@@ -8,11 +8,15 @@ namespace Lottery.Data
     public interface IThunderBallService
     {
         Task<List<Lottery>> GetThunderballAsync();
+        Task<List<Lottery>> GetDrawbyDrawNumberAsync(string drawnumber);
+        Task<string> UpdateDrawAsync();
         Task<Dictionary<int, int>> GetHotBallsAsync();
         Task<Dictionary<int, int>> GetDrawTotalsAsync();
         Task<Dictionary<int, int>> GetDeltasAsync();
         Task<List<Ticket>> GetTicketsAsync();
         Task<bool> SaveGuesses(List<Ticket> tickets);
+        Task<List<Ticket>> GetLastGuessesAsync();
+        Task<List<Ticket>> GetGuessesByDrawNumberAsync(string drawnumber);
     }
 
     public class ThunderBallService : IThunderBallService
@@ -29,6 +33,26 @@ namespace Lottery.Data
 
             Url url = new("https://func-poc-lottery-vse-ne.azurewebsites.net/api/Draw");
             var data = await url.GetJsonAsync<List<Lottery>>();
+            return data;
+        }
+
+        public async Task<List<Lottery>> GetDrawbyDrawNumberAsync(string drawnumber)
+        {
+            //return await Task.FromResult(await repository.GetList());
+            //return await repository.GetList();
+
+            Url url = new($"https://func-poc-lottery-vse-ne.azurewebsites.net/api/Draw/{drawnumber}");
+            var data = await url.GetJsonAsync<List<Lottery>>();
+            return data;
+        }
+
+        public async Task<string> UpdateDrawAsync()
+        {
+            //return await Task.FromResult(await repository.GetList());
+            //return await repository.GetList();
+
+            Url url = new($"https://func-poc-lottery-vse-ne.azurewebsites.net/api/Draw/update");
+            var data = await url.GetStringAsync();
             return data;
         }
 
@@ -69,6 +93,20 @@ namespace Lottery.Data
                 return true; 
             }
             return false;
+        }
+
+        public async Task<List<Ticket>> GetLastGuessesAsync()
+        {
+            Url url = new("https://func-poc-lottery-vse-ne.azurewebsites.net/api/GetLastGuesses");
+            var data = await url.GetJsonAsync<List<Ticket>>();
+            return data;
+        }
+
+        public async Task<List<Ticket>> GetGuessesByDrawNumberAsync(string drawnumber)
+        {
+            Url url = new($"https://func-poc-lottery-vse-ne.azurewebsites.net/api/Guess/{drawnumber}");
+            var data = await url.GetJsonAsync<List<Ticket>>();
+            return data;
         }
     }
 

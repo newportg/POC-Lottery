@@ -24,12 +24,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/DrawSelection.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJhd1NlbGVjdGlvbi5yYXpvcg==
+[C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/DrawResult.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJhd1Jlc3VsdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/FetchAnalysis.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hBbmFseXNpcy5yYXpvcg==
+[C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/DrawSelection.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJhd1NlbGVjdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/FetchData.razor]

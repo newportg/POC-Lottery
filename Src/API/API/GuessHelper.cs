@@ -90,8 +90,8 @@ namespace API
             }
 
             // Does the Guess Table contain the ticket drawnumber
-            tickets = GetGuesses(new ThunderBallEntity() { DrawNumber = guesses[0].DrawNumber });
-            if( tickets != null || tickets.Count > 0 ) 
+            var currentdraw = GetGuesses(new ThunderBallEntity() { DrawNumber = guesses[0].DrawNumber });
+            if(currentdraw != null && currentdraw.Count > 0 ) 
             {
                 // Already have guessed this draw.
                 _logger.LogInformation($"SaveTickets - Previously Guessed {guesses[0].DrawNumber}");
@@ -104,7 +104,6 @@ namespace API
             try {
                 var res = _repo.Select<Library.Azure.Odata.Models.OData<ThunderBallEntity>>("PartitionKey eq 'Thunderball'");
                 rowcount = res.Value.Count;
-                rowcount++;
             }
             catch(Exception ex)
             {

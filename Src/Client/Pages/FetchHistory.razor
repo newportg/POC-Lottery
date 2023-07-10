@@ -5,7 +5,9 @@
 
 <h1>ThunderBall History</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<div class="input-group mb-3 ">
+    <button class="btn btn-primary" @onclick="Update">Update</button>
+</div>
 
 @if (items == null)
 {
@@ -81,12 +83,18 @@ else
 @code
 {
     IList<Lottery> items = new List<Lottery>();
+    string updated;
     private bool IsSortedAscending;
     private string CurrentSortColumn;
 
     protected override async Task OnInitializedAsync()
     {
         items = await ThunderBallService.GetThunderballAsync();
+    }
+
+    public async Task Update()
+    {
+        updated = await ThunderBallService.UpdateDrawAsync();
     }
 
     private string GetSortStyle(string columnName)

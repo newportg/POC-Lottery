@@ -7,6 +7,8 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.Extensions.Logging;
 using Domain.Models;
 using System.Net;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace API
 {
@@ -36,7 +38,7 @@ namespace API
         [OpenApiOperation(operationId: "DrawUpdate")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.OK, Description = "The OK response")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
+        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/Update")] HttpRequestData req)
         {
             _logger.LogInformation("DrawUpdate");
             var response = req.CreateResponse();
@@ -60,7 +62,7 @@ namespace API
 
                 response.StatusCode = HttpStatusCode.OK;
                 response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-                response.WriteString("Welcome to Azure Functions!");
+                response.WriteString("Updated");
             }
             else
             {

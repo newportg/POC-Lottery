@@ -4,6 +4,11 @@ using Domain.Rules;
 using Flurl.Util;
 using Library.Azure.Odata;
 using Microsoft.Extensions.Logging;
+using System.Xml.Linq;
+using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Newtonsoft.Json.Linq;
+using System.Numerics;
 
 namespace API
 {
@@ -18,7 +23,6 @@ namespace API
         bool IsTwoThirdsHot(Dictionary<int, int> hotballs, int[] ticket);
         string LatestDrawNumber();
         List<Ticket> CreateTickets();
-        //void SaveTickets(List<Ticket> tickets);
     }
 
     public class Helper : IHelper
@@ -26,7 +30,6 @@ namespace API
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
         private readonly ITableStore? _repo;
-        //private readonly ITableStore? _guessRepo;
 
         public Helper(Dictionary<string, ITableStore> dict, IMapper mapper, ILogger<DrawUpdate> logger)
         {
@@ -37,11 +40,6 @@ namespace API
             {
                 _logger.LogError($"No Table defined :-{Environment.GetEnvironmentVariable("TableContainer")}");
             }
-
-            //if (!dict.TryGetValue(Environment.GetEnvironmentVariable("GuessContainer"), out _guessRepo))
-            //{
-            //    _logger.LogError($"No Table defined :-{Environment.GetEnvironmentVariable("GuessContainer")}");
-            //}
         }
 
         public List<Lottery>? GetDraws(ThunderBallEntity entity)
@@ -271,29 +269,17 @@ namespace API
             var drawNumber = int.Parse(LatestDrawNumber());
             drawNumber += 1;
 
-            Random random = new Random();
+            var balls = PickBalls();
             for (int i = 0; i < rules.NoOfGuesses(); i++)
             {
                 Ticket ticket = new Ticket();
-                bool cons;
-                bool drawn;
-                bool hot;
-                do
+                ticket.Balls = new int[rules.NoOfMainBalls];
+
+                for (int j = 0; j < 5; j++)
                 {
-                    ticket.Balls = combinations.ElementAt(random.Next(combinations.Count())).ToArray();
-
-                    cons = HasConsecutiveNumbers(ticket.Balls);
-                    drawn = HasBeenDrawn(ticket.Balls);
-                    hot = IsTwoThirdsHot(hotballs, ticket.Balls);
-
-                    if (cons == true)
-                        Console.WriteLine("Rejected - " + string.Join(", ", ticket.Balls));
-                    if (drawn == true)
-                        Console.WriteLine("Previously Drawn - " + string.Join(", ", ticket.Balls));
-                    if (hot == true)
-                        Console.WriteLine("Hot - " + string.Join(", ", ticket.Balls));
-
-                } while (cons || drawn || !hot);
+                    ticket.Balls[j] = balls[(i * 5) + j];
+                }
+                Array.Sort(ticket.Balls);
 
                 // Add ThunderBall
                 var rnd = new Random();
@@ -303,9 +289,103 @@ namespace API
 
                 tickets.Add(ticket);
             }
+
+
+            //Random random = new Random();
+            //for (int i = 0; i < rules.NoOfGuesses(); i++)
+            //{
+            //    Ticket ticket = new Ticket();
+            //    bool cons;
+            //    bool drawn;
+            //    bool hot;
+            //    do
+            //    {
+            //        ticket.Balls = combinations.ElementAt(random.Next(combinations.Count())).ToArray();
+
+            //        cons = HasConsecutiveNumbers(ticket.Balls);
+            //        drawn = HasBeenDrawn(ticket.Balls);
+            //        hot = IsTwoThirdsHot(hotballs, ticket.Balls);
+
+            //        if (cons == true)
+            //            Console.WriteLine("Rejected - " + string.Join(", ", ticket.Balls));
+            //        if (drawn == true)
+            //            Console.WriteLine("Previously Drawn - " + string.Join(", ", ticket.Balls));
+            //        if (hot == true)
+            //            Console.WriteLine("Hot - " + string.Join(", ", ticket.Balls));
+
+            //    } while (cons || drawn || !hot);
+
+            //    // Add ThunderBall
+            //    var rnd = new Random();
+            //    ticket.DrawNumber = drawNumber.ToString();
+            //    ticket.ThunderBall = rnd.Next(1, 14);
+            //    ticket.DrawTotal = ticket.Balls.Sum();
+
+            //    tickets.Add(ticket);
+
+            //    PickBalls();
+            //}
             return tickets;
         }
 
+        public List<int> PickBalls()
+        {
+            List<int> numbers = new List<int>();
 
+            // Get the top 2/3 of the hot balls
+            var hotballs = HotBalls();
+            var hb = hotballs.OrderBy(x => x.Value).ToList();
+            var rules = new ThunderBallRules();
+            var discard = rules.NoOfBalls/3;
+
+            for( int i =discard; i < hb.Count; i++)
+            {
+                numbers.Add(hb[i].Key);
+            }
+
+            var twothirds = (rules.NoOfBalls / 3) * 2;
+            var topup = 45 - twothirds;
+
+            List<int> selectedNumbers = new List<int>();
+
+            Random random = new Random();
+            // Select each number at least once
+            selectedNumbers = PickBall(twothirds, numbers, selectedNumbers);
+
+            // replenish the selection
+            for (int i = discard; i < hb.Count; i++)
+            {
+                numbers.Add(hb[i].Key);
+            }
+
+            // Select 12 additional random numbers
+            selectedNumbers = PickBall(topup, numbers, selectedNumbers);
+
+
+            // Print the selected numbers
+            for( int i = 0; i< 45/5 ; i++ )
+            {
+                for(int j=0; j< 5; j++)
+                {
+                    Console.Write(selectedNumbers[(i*5)+j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            return selectedNumbers;
+        }
+
+        private List<int> PickBall(int pick, List<int> numbers, List<int> selectedNumbers)
+        {
+            for (int i = 0; i < pick; i++)
+            {
+                Random random = new Random();
+                int index = random.Next(numbers.Count);
+                int selectedNumber = numbers[index];
+                selectedNumbers.Add(selectedNumber);
+                numbers.RemoveAt(index);
+            }
+            return selectedNumbers;
+        }
     }
 }

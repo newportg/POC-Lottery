@@ -1,0 +1,162 @@
+﻿@page "/drawresult"
+
+@using Lottery.Data
+@inject IThunderBallService ThunderBallService
+
+<h1>ThunderBall Result</h1>
+
+<div class="input-group mb-3 ">
+    <input type="text" class="form-control textbox-parameters" id="@DrawNumber" @bind="@DrawNumber">
+    <button class="btn btn-primary" @onclick="Select">Select</button>
+</div>
+
+
+@if (guesses == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span>DrawNumber</span>
+                </th>
+                <th>
+                    <span>Ball1</span>
+                </th>
+                <th>
+                    <span>Ball2</span>
+                </th>
+                <th>
+                    <span>Ball3</span>
+                </th>
+                <th>
+                    <span>Ball4</span>
+                </th>
+                <th>
+                    <span>Ball5</span>
+                </th>
+                <th>
+                    <span>Thunderball</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var draw in draws)
+            {
+                <tr>
+                    <td>@draw.DrawNumber</td>
+                    <td>@draw.Balls[0]</td>
+                    <td>@draw.Balls[1]</td>
+                    <td>@draw.Balls[2]</td>
+                    <td>@draw.Balls[3]</td>
+                    <td>@draw.Balls[4]</td>
+                    <td>@draw.BonusBalls[0]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @((MarkupString)guessResults)
+
+}
+
+@code
+{
+    IList<Ticket> guesses = new List<Ticket>();
+    IList<Lottery> draws = new List<Lottery>();
+    private string DrawNumber { get; set; } = "";
+    string guessResults;
+
+    protected override async Task OnInitializedAsync()
+    {
+        guesses = await ThunderBallService.GetLastGuessesAsync();
+        if (guesses.Count > 0)
+        {
+            draws = await ThunderBallService.GetDrawbyDrawNumberAsync(guesses[0].DrawNumber);
+        }
+
+        GuessResults();
+
+        DrawNumber = guesses[0].DrawNumber;
+    }
+
+    public async Task Select()
+    {
+        guesses = await ThunderBallService.GetGuessesByDrawNumberAsync(DrawNumber);
+        draws = await ThunderBallService.GetDrawbyDrawNumberAsync(DrawNumber);
+
+        GuessResults();
+    }
+
+    public string GuessResults()
+    {
+        int[,] PrizeBreakdown = { { 0, 1 }, { 1, 1 }, { 2, 1 }, { 3, 0 }, { 3, 1 }, { 4, 0 }, { 4, 1 }, { 5, 0 }, { 5, 1 } };
+        int match = 0;
+
+        guessResults = "<table class='table table-bordered table-hover'>";
+        guessResults += "<thead><tr><th><span>DrawNumber</span></th><th><span>Ball1</span></th>";
+        guessResults += "<th><span>Ball2</span></th><th><span>Ball3</span></th><th><span>Ball4</span></th><th><span>Ball5</span></th><th><span>Thunderball</span></th><th><span>Prize</span></th></tr></thead>";
+        guessResults += "<tbody>";
+
+        foreach( var guess in this.guesses)
+        {
+            guessResults += "<tr>";
+            guessResults += $"<td>{guess.DrawNumber}</td>";
+
+            string prize = string.Empty;
+            match = 0;
+
+            for(int i=0; i< 5; i++)
+            {
+                if (draws.Count > 0)
+                {
+                    if (draws[0].Balls.Contains(guess.Balls[i]))
+                    {
+                        guessResults += $"<td bgcolor=#fff00>{guess.Balls[i]}</td>";
+                        prize += "&#9745;";
+                        match++;
+                    }
+                    else
+                    {
+                        guessResults += $"<td>{guess.Balls[i]}</td>";
+                        prize += "&#9744;";
+                    }
+                }
+                else
+                {
+                    guessResults += $"<td>{guess.Balls[i]}</td>";
+                    prize += "&#9744;";
+                }
+            }
+            if (draws.Count > 0 && draws[0].BonusBalls[0] == guess.ThunderBall)
+            {
+                guessResults += $"<td bgcolor=#fff00>{guess.ThunderBall}</td>";
+                prize += "&#9745;";
+
+                var eel = PrizeBreakdown[match, 1];
+                if( eel == 1)
+                    prize += "&#128512;";
+
+            }
+            else
+            {
+                guessResults += $"<td>{guess.ThunderBall}</td>";
+                prize += "&#9744;";
+
+                var eel = PrizeBreakdown[match, 0];
+
+            }
+
+            guessResults += $"<td>{prize}</td>";
+
+            guessResults += "</tr>";
+        }
+        guessResults += "</tbody></table>";
+
+        return guessResults;
+    }
+}
+

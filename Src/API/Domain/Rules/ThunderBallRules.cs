@@ -1,4 +1,6 @@
-﻿namespace Domain.Rules
+﻿using System.Collections.Generic;
+
+namespace Domain.Rules
 {
     public class ThunderBallRules
     {
@@ -11,7 +13,7 @@
         {
             return (MinMainBallWin / CostPerGuess) - CostPerGuess;
         }
-
         public int ThunderBallMax { get; } = 14;
+
     }
 }
