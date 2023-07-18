@@ -184,7 +184,7 @@ else
         var ord = dic.OrderBy(x => x.Key).ToList();
         var middle = ord.Count() / 5;
 
-        drawTotals = "<table class='table-bordered'><thead><tr><td>Count</td><td>Totals</td></tr></thead><tbody>";
+        drawTotals = "<table class='table-bordered'><thead><tr><td colspan=2>Draw Totals</td></tr><tr><td>Count</td><td>Totals</td></tr></thead><tbody>";
 
         foreach (var entry in ord)
         {
@@ -213,7 +213,7 @@ else
             totalcount += entry.Value;
         }
 
-        deltas = "<table class='table-bordered'><thead><tr><td>Count</td><td>Percent</td><td>Totals</td></tr></thead><tbody>";
+        deltas = "<table class='table-bordered'><thead><tr><td colspan=3>Delta</td></tr><tr><td>Count</td><td>Percent</td><td>Totals</td></tr></thead><tbody>";
 
 
         foreach (var entry in ord)

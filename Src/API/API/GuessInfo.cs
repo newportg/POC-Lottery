@@ -10,7 +10,10 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
+using static Grpc.Core.Metadata;
 
 
 namespace API
@@ -30,16 +33,16 @@ namespace API
 
         [Function("GetGuessByDrawNumber")]
         [OpenApiOperation(operationId: "GetGuessByDrawNumber", Description = "Get a Guess by id")]
-        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "DrawNumber")]
+        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(int), Description = "DrawNumber")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(List<Ticket>), Description = "The OK response")]
-        public HttpResponseData GetGuessByDrawNumber([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Guess/{id}")] HttpRequestData req, string id)
+        public HttpResponseData GetGuessByDrawNumber([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Guess/{id:int?}")] HttpRequestData req, int id)
         {
             _logger.LogInformation($"GetGuessByDrawNumber :{id}");
             var response = req.CreateResponse();
 
             // If there are already Guesses with drawnumber+1 get those
-            var res = _guesshelper.GetGuesses(new ThunderBallEntity() { DrawNumber = id });
+            var res = _guesshelper.GetGuesses(new ThunderBallEntity() { DrawNumber = id.ToString() });
             if (res == null)
             {
                 response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
@@ -58,12 +61,11 @@ namespace API
             return response;
         }
 
-
         [Function("GetTickets")]
         [OpenApiOperation(operationId: "GetTickets", Description = "Get a list tickets")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(List<Ticket>), Description = "The OK response")]
-        public HttpResponseData GetTickets([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetTickets")] HttpRequestData req)
+        public HttpResponseData GetTickets([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Guess/Nextdraw")] HttpRequestData req)
         {
             _logger.LogInformation("GetTickets :");
             var response = req.CreateResponse();
@@ -109,12 +111,12 @@ namespace API
             return response;
         }
 
-        [Function("SaveTickets")]
-        [OpenApiOperation(operationId: "SaveTickets", Description = "Save a list tickets")]
+        [Function("SaveGuesses")]
+        [OpenApiOperation(operationId: "SaveGuesses", Description = "Save new guesses")]
         [OpenApiRequestBody(contentType: "application/json", bodyType: typeof(List<Ticket>), Description = "Tickets", Example = typeof(List<Ticket>))]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.OK, Description = "The OK response")]
-        public async Task<HttpResponseData> SaveTickets([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "SaveTickets")] HttpRequestData req)
+        public async Task<HttpResponseData> SaveGuesses([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "Guess/Save")] HttpRequestData req)
         {
             _logger.LogInformation("SaveTickets");
 
@@ -142,10 +144,10 @@ namespace API
         }
 
         [Function("GetLastGuesses")]
-        [OpenApiOperation(operationId: "GetTickets", Description = "Get a list guesses")]
+        [OpenApiOperation(operationId: "GetLastGuesses", Description = "Get a list guesses")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(List<Ticket>), Description = "The OK response")]
-        public HttpResponseData GetLastGuesses([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetLastGuesses")] HttpRequestData req)
+        public HttpResponseData GetLastGuesses([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Guess/Last")] HttpRequestData req)
         {
             _logger.LogInformation("GetLastGuesses :");
             var response = req.CreateResponse();
@@ -155,7 +157,7 @@ namespace API
                 List<Ticket> tickets = new List<Ticket>();
 
                 // If there are already Guesses with drawnumber+1 get those
-                tickets = _guesshelper.GetGuesses(new ThunderBallEntity() );
+                tickets = _guesshelper.GetGuesses(new ThunderBallEntity());
                 if (tickets == null || tickets.Count == 0)
                 {
                     _logger.LogInformation($"No Last Guesses ");
@@ -185,6 +187,34 @@ namespace API
             return response;
         }
 
+        [Function("GetDrawResult")]
+        [OpenApiOperation(operationId: "GetDrawResult", Description = "Get a draw result")]
+        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "DrawNumber")]
+        [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(DrawResult), Description = "The OK response")]
+        public HttpResponseData GetDrawResult([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Guess/Result/{id:int?}")] HttpRequestData req, int id)
+        {
+            _logger.LogInformation($"GetDrawResult :{id}");
+            var response = req.CreateResponse();
 
+            try
+            {
+                var drawResult = _guesshelper.GetDrawResult(new ThunderBallEntity() { DrawNumber = id.ToString() });
+
+                response.StatusCode = HttpStatusCode.OK;
+                response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+                var jsonToReturn = JsonConvert.SerializeObject(drawResult);
+                response.WriteString($"{jsonToReturn}");
+
+            }
+            catch (Exception ex)
+            {
+                response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString($"{ex.Message}");
+            }
+
+            return response;
+        }
     }
 }

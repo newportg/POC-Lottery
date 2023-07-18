@@ -44,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/ThunderTotal.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGh1bmRlclRvdGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

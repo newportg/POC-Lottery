@@ -9,5 +9,7 @@ namespace Domain.Models
         public int ThunderBall { get; set; }
         public int DrawTotal { get; set; }
 
+        public int BallMatch { get; set; }
+        public int BonusBallMatch { get; set; }
     }
 }

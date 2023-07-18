@@ -53,7 +53,7 @@ namespace Domain.Mapping
 
         private int BallTotal(ThunderBallEntity src)
         {
-            return int.Parse(src.Ball1) + int.Parse(src.Ball2) + int.Parse(src.Ball3) + int.Parse(src.Ball4) + int.Parse(src.Ball5) + int.Parse(src.Thunderball);
+            return int.Parse(src.Ball1) + int.Parse(src.Ball2) + int.Parse(src.Ball3) + int.Parse(src.Ball4) + int.Parse(src.Ball5);
         }
 
         private int NumOddBalls(ThunderBallEntity src)

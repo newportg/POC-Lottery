@@ -1,0 +1,50 @@
+﻿@page "/thundertotal"
+
+@using Lottery.Data
+@inject IThunderBallService ThunderBallService
+
+<h1>Total Thunder</h1>
+
+@if (drawTotals == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @((MarkupString)drawTotals)
+
+}
+
+@code
+{
+    string drawTotals;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        drawTotals = DrawTotals(await ThunderBallService.DrawTotalByThunderBall());
+    }
+
+    public string DrawTotals(Dictionary<int, TotalThunder> dic)
+    {
+        string drawTotals;
+
+        var ord = dic.OrderBy(x => x.Key).ToList();
+
+        drawTotals = "<table class='table-bordered'><thead><tr><td colspan=2>Draw Total By ThunderBall</td></tr><tr><td>Total</td><td>Count</td><td>ThunderBalls</td></tr></thead><tbody>";
+
+        foreach (var entry in ord)
+        {
+            int count = entry.Key;
+            TotalThunder tt = entry.Value;
+
+            drawTotals += $"<tr><td>{count}</td><td>{tt.Count}</td><td>{string.Join<int>(",", tt.Thunderball)}</td></tr>";
+        }
+        drawTotals += "</tbody></table>";
+        return drawTotals;
+
+    }
+
+}
+
+

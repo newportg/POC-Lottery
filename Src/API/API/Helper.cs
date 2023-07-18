@@ -23,6 +23,8 @@ namespace API
         bool IsTwoThirdsHot(Dictionary<int, int> hotballs, int[] ticket);
         string LatestDrawNumber();
         List<Ticket> CreateTickets();
+
+        Dictionary<int, TotalThunder>? DrawTotalByThunderBall();
     }
 
     public class Helper : IHelper
@@ -387,5 +389,37 @@ namespace API
             }
             return selectedNumbers;
         }
+
+        public Dictionary<int, TotalThunder>? DrawTotalByThunderBall()
+        {
+            _logger.LogInformation("DrawTotalByThunderBall");
+
+            var previousdraws = GetDraws(new ThunderBallEntity());
+            if (previousdraws == null)
+            {
+                return null;
+            }
+
+
+            // total count thunderball[,] 
+
+            Dictionary<int, TotalThunder> dic = new Dictionary<int, TotalThunder>();
+            foreach (var draw in previousdraws)
+            {
+                if (dic.ContainsKey(draw.BallTotal))
+                {
+                    dic.TryGetValue(draw.BallTotal, out TotalThunder val);
+                    val.Update(draw.BonusBalls[0]);
+                }
+                else
+                {
+                    dic.Add(draw.BallTotal, new TotalThunder(1, draw.BonusBalls[0]));
+                }
+            }
+
+            return dic;
+        }
+
+
     }
 }

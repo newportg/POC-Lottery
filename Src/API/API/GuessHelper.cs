@@ -3,6 +3,8 @@ using Domain.Models;
 using Flurl.Util;
 using Library.Azure.Odata;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
 namespace API
@@ -11,18 +13,21 @@ namespace API
     {
         bool SaveTickets(List<Ticket> tickets);
         List<Ticket>? GetGuesses(ThunderBallEntity entity);
+        DrawResult GetDrawResult(ThunderBallEntity entity);
     }
 
     public class GuessHelper : IGuessHelper
     {
+        private readonly IHelper? _helper;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
         private readonly ITableStore? _repo;
 
-        public GuessHelper(Dictionary<string, ITableStore> dict, IMapper mapper, ILogger<DrawUpdate> logger)
+        public GuessHelper(IHelper helper, Dictionary<string, ITableStore> dict, IMapper mapper, ILogger<DrawUpdate> logger)
         {
             _logger = logger;
             _mapper = mapper;
+            _helper = helper;
 
             if (!dict.TryGetValue(Environment.GetEnvironmentVariable("GuessContainer"), out _repo))
             {
@@ -72,7 +77,6 @@ namespace API
                 return null;
             }
         }
-
         public bool SaveTickets(List<Ticket> tickets)
         {
             _logger.LogInformation("SaveTickets");
@@ -121,6 +125,83 @@ namespace API
             }
 
             return true;
+        }
+
+        public DrawResult GetDrawResult(ThunderBallEntity entity)
+        {
+            var guesses = GetGuesses(entity);
+            var draws = _helper.GetDraws(entity);
+
+            var drawResult = new DrawResult();
+            drawResult.DrawNumber = entity.DrawNumber;
+
+            if (draws != null && draws.Count > 0)
+            {
+                drawResult.DrawBalls = draws[0].Balls;
+                drawResult.DrawThunderBall = draws[0].BonusBalls[0];
+            }
+
+            foreach (var guess in guesses)
+            {
+                var gr = new GuessResult();
+                var balllength = guess.Balls.Length;
+
+                for (int i = 0; i < balllength; i++)
+                {
+                    gr.GuessBall[i] = funcBall(funcfunc(draws, guess.Balls[i]), guess.Balls[i]);
+                }
+
+                // ThunderBall
+                gr.GuessBall[5] = funcBall(funcfunc(draws,guess.ThunderBall, true), guess.ThunderBall, true);
+                gr.Prize = PrizeBreakdown(gr.GuessBall);
+
+                drawResult.GuessResults.Add(gr);
+            }
+
+            return drawResult;
+        }
+
+        private bool funcfunc(List<Lottery>draws, int guess, bool tball=false)
+        {
+            if( draws == null || draws.Count == 0)
+            {
+                return false;
+            }
+
+            if (tball)
+            {
+                return draws[0].BonusBalls[0] == guess;
+            }
+            return draws[0].Balls.Contains(guess);
+        }
+        private GuessBall funcBall( bool drawBall, int guessBall, bool thunderball = false)
+        {
+            if( drawBall )
+            {
+                return new GuessBall(guessBall, true, thunderball);
+            }
+            return new GuessBall(guessBall, false, thunderball);
+        }
+        private int PrizeBreakdown(GuessBall[] gb)
+        {
+            int match = 0;
+            int tball = 0;
+            foreach (var g in gb)
+            {
+                if (g.Match && !g.Thunderball) { match++; }
+                if (g.Match && g.Thunderball) { tball++; }
+            }
+
+            if (match == 0 && tball == 1) { return 3; }
+            else if (match == 1 && tball == 1) { return 5; }
+            else if (match == 2 && tball == 1) { return 10; }
+            else if (match == 3 && tball == 0) { return 10; }
+            else if (match == 3 && tball == 1) { return 20; }
+            else if (match == 4 && tball == 0) { return 100; }
+            else if (match == 4 && tball == 1) { return 250; }
+            else if (match == 5 && tball == 0) { return 5000; }
+            else if (match == 5 && tball == 1) { return 50000; }
+            return 0;
         }
     }
 }

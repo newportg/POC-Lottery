@@ -10,4 +10,10 @@ namespace Lottery.Data
         public int DrawTotal { get; set; }
 
     }
+
+    public class TotalThunder
+    {
+        public int Count { get; set; }
+        public List<int> Thunderball { get; set; }
+    }
 }

@@ -1,0 +1,145 @@
+{
+  "attachments": [
+    {
+      "content": {
+        "type": "AdaptiveCard",
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.5",
+        "body": [
+          {
+            "type": "Table",
+            "gridStyle": "accent",
+            "firstRowAsHeaders": true,
+            "columns": [
+              {
+                "width": 3
+              },
+              {
+                "width": 3
+              },
+              {
+                "width": 3
+              },
+              {
+                "width": 3
+              },
+              {
+                "width": 3
+              },
+              {
+                "width": 3
+              },
+              {
+                "width": 3
+              },
+              {
+                "width": 3
+              }
+            ],
+            "rows": [
+              {
+                "type": "TableRow",
+                "cells": [
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Draw",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Ball 1",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Ball 2",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Ball 3",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Ball 4",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Ball 5",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "TBall",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Win",
+                        "wrap": true,
+                        "weight": "Bolder"
+                      }
+                    ]
+                  }
+                ],
+                "style": "accent"
+              }
+              ${rows}
+
+            ]
+          }
+        ]
+      },
+      "contentType": "application/vnd.microsoft.card.adaptive",
+      "contentUrl": null
+    }
+  ],
+  "type": "message"
+}

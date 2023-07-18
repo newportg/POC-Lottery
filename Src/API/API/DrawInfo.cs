@@ -30,12 +30,21 @@ namespace API
         [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "RowKey")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(List<Lottery>), Description = "The OK response")]
-        public HttpResponseData GetDrawById([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/{id}")] HttpRequestData req, string id)
+        public HttpResponseData GetDrawById([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/{id:int}")] HttpRequestData req, int id)
         {
             _logger.LogInformation($"GetDrawByRowKey :{id}");
             var response = req.CreateResponse();
 
-            var res = _helper.GetDraws(new ThunderBallEntity() { RowKey=id});
+            List<Lottery> res;
+            if (id == 0)
+            {
+                res = _helper.GetDraws(new ThunderBallEntity());
+
+            }
+            else
+            {
+                res = _helper.GetDraws(new ThunderBallEntity() { RowKey = id.ToString() });
+            }
             if (res == null)
             {
                 response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
@@ -60,7 +69,7 @@ namespace API
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(List<Lottery>), Description = "The OK response")]
         public HttpResponseData GetDraws([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw")] HttpRequestData req)
         {
-            _logger.LogInformation("DrawInfo");
+            _logger.LogInformation("GetDraws");
             var response = req.CreateResponse();
 
             var res = _helper.GetDraws(new ThunderBallEntity());
@@ -82,10 +91,10 @@ namespace API
         }
 
         [Function("GetHotBalls")]
-        [OpenApiOperation(operationId: "GetHotBalls", Description = "Get a list hot balls")]
+        [OpenApiOperation(operationId: "GetHotBalls", Description = "Get a list of ball that have occured the most")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<int, int>), Description = "The OK response")]
-        public HttpResponseData GetHotBalls([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "HotBalls")] HttpRequestData req)
+        public HttpResponseData GetHotBalls([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/HotBalls")] HttpRequestData req)
         {
             _logger.LogInformation("GetHotBalls :");
             var response = req.CreateResponse();
@@ -109,10 +118,10 @@ namespace API
         }
 
         [Function("GetDeltas")]
-        [OpenApiOperation(operationId: "GetDeltas", Description = "Get a list deltas")]
+        [OpenApiOperation(operationId: "GetDeltas", Description = "Get a list of delta frequency")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<int, int>), Description = "The OK response")]
-        public HttpResponseData GetDelta([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Deltas")] HttpRequestData req)
+        public HttpResponseData GetDelta([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/Deltas")] HttpRequestData req)
         {
             _logger.LogInformation("GetDeltas :");
             var response = req.CreateResponse();
@@ -136,15 +145,43 @@ namespace API
         }
 
         [Function("GetDrawTotals")]
-        [OpenApiOperation(operationId: "GetDrawTotals", Description = "Get a list draw totals")]
+        [OpenApiOperation(operationId: "GetDrawTotals", Description = "Get a list of ball totals occurance")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<int, int>), Description = "The OK response")]
-        public HttpResponseData GetDrawTotal([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "DrawTotals")] HttpRequestData req)
+        public HttpResponseData GetDrawTotal([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/Totals")] HttpRequestData req)
         {
             _logger.LogInformation("GetDrawTotals :");
             var response = req.CreateResponse();
 
             var dic = _helper.DrawTotals();
+            if (dic == null)
+            {
+                response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("No Repo/Data");
+            }
+            else
+            {
+                response.StatusCode = HttpStatusCode.OK;
+                response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+                var jsonToReturn = JsonConvert.SerializeObject(dic);
+                response.WriteString($"{jsonToReturn}");
+            }
+
+            return response;
+        }
+
+
+        [Function("DrawTotalByThunderBall")]
+        [OpenApiOperation(operationId: "DrawTotalByThunderBall", Description = "Get a list of draw totals and thunderballs")]
+        [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<int, int>), Description = "The OK response")]
+        public HttpResponseData DrawTotalByThunderBall([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/TotalsByThunderBall")] HttpRequestData req)
+        {
+            _logger.LogInformation("GetDrawTotals :");
+            var response = req.CreateResponse();
+
+            var dic = _helper.DrawTotalByThunderBall();
             if (dic == null)
             {
                 response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
