@@ -74,11 +74,13 @@ namespace API
                         var key = Environment.GetEnvironmentVariable("AzureStorageKey");
                         var con = Environment.GetEnvironmentVariable("TableContainer");
                         var gus = Environment.GetEnvironmentVariable("GuessContainer");
+                        var reg = Environment.GetEnvironmentVariable("RegTestContainer");
                         var log = container.GetRequiredService<ILogger<TableStore>>();
                         Dictionary<string, ITableStore> dict = new Dictionary<string, ITableStore>(System.StringComparer.OrdinalIgnoreCase)
                         {
                             { con, new TableStore(act, key, con, log) },
-                            { gus, new TableStore(act, key, gus, log) }
+                            { gus, new TableStore(act, key, gus, log) },
+                            { reg, new TableStore(act, key, reg, log) }
                         };
 
                         return dict;

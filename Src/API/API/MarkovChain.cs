@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using System.Net;
 using AutoMapper;
 using Domain.Models;
 using FluentValidation;
@@ -7,10 +5,9 @@ using Library.Azure.Odata;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
+using System.Net;
 
 namespace API
 {
@@ -24,7 +21,7 @@ namespace API
 
         private Dictionary<int, Dictionary<int, double>> transitions;
 
-        public MarkovChain(Dictionary<string, ITableStore> dict, IMapper mapper, IValidator<ThunderBallEntity> validator, ILogger<DrawUpdate> logger, IHelper helper)
+        public MarkovChain(Dictionary<string, ITableStore> dict, IMapper mapper, IValidator<ThunderBallEntity> validator, ILogger<MarkovChain> logger, IHelper helper)
         {
             _validator = validator;
             _mapper = mapper;
@@ -46,6 +43,15 @@ namespace API
         public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequestData req)
         {
             _logger.LogInformation("MarkovChain");
+
+            var response = req.CreateResponse();
+
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("MarkovChain : _helper null");
+                return response;
+            }
 
             var res = _helper.GetDraws(new ThunderBallEntity());
 
@@ -72,9 +78,8 @@ namespace API
             }
 
 
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-
+            response.StatusCode = HttpStatusCode.OK;
+            response.Headers.Add("Content-Type", "application/json; charset=utf-8");
             response.WriteString("Welcome to Azure Functions!");
 
             return response;

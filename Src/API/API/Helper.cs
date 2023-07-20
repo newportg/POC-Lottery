@@ -22,7 +22,7 @@ namespace API
         Dictionary<int, int> Deltas();
         bool IsTwoThirdsHot(Dictionary<int, int> hotballs, int[] ticket);
         string LatestDrawNumber();
-        List<Ticket> CreateTickets();
+        List<Ticket> CreateTickets(int _drawnumber = 0);
 
         Dictionary<int, TotalThunder>? DrawTotalByThunderBall();
     }
@@ -33,7 +33,7 @@ namespace API
         private readonly ILogger _logger;
         private readonly ITableStore? _repo;
 
-        public Helper(Dictionary<string, ITableStore> dict, IMapper mapper, ILogger<DrawUpdate> logger)
+        public Helper(Dictionary<string, ITableStore> dict, IMapper mapper, ILogger<Helper> logger)
         {
             _logger = logger;
             _mapper = mapper;
@@ -256,7 +256,7 @@ namespace API
             return drawnumber;
         }
 
-        public List<Ticket> CreateTickets()
+        public List<Ticket> CreateTickets(int _drawnumber = 0)
         {
             _logger.LogInformation("CreateTickets");
 
@@ -268,7 +268,13 @@ namespace API
                 .DifferentCombinations(rules.NoOfMainBalls);
 
             var hotballs = HotBalls();
-            var drawNumber = int.Parse(LatestDrawNumber());
+            var drawNumber = 0;
+
+            if (_drawnumber == 0)
+                drawNumber = int.Parse(LatestDrawNumber());
+            else
+                drawNumber = _drawnumber;
+
             drawNumber += 1;
 
             var balls = PickBalls();
@@ -291,42 +297,6 @@ namespace API
 
                 tickets.Add(ticket);
             }
-
-
-            //Random random = new Random();
-            //for (int i = 0; i < rules.NoOfGuesses(); i++)
-            //{
-            //    Ticket ticket = new Ticket();
-            //    bool cons;
-            //    bool drawn;
-            //    bool hot;
-            //    do
-            //    {
-            //        ticket.Balls = combinations.ElementAt(random.Next(combinations.Count())).ToArray();
-
-            //        cons = HasConsecutiveNumbers(ticket.Balls);
-            //        drawn = HasBeenDrawn(ticket.Balls);
-            //        hot = IsTwoThirdsHot(hotballs, ticket.Balls);
-
-            //        if (cons == true)
-            //            Console.WriteLine("Rejected - " + string.Join(", ", ticket.Balls));
-            //        if (drawn == true)
-            //            Console.WriteLine("Previously Drawn - " + string.Join(", ", ticket.Balls));
-            //        if (hot == true)
-            //            Console.WriteLine("Hot - " + string.Join(", ", ticket.Balls));
-
-            //    } while (cons || drawn || !hot);
-
-            //    // Add ThunderBall
-            //    var rnd = new Random();
-            //    ticket.DrawNumber = drawNumber.ToString();
-            //    ticket.ThunderBall = rnd.Next(1, 14);
-            //    ticket.DrawTotal = ticket.Balls.Sum();
-
-            //    tickets.Add(ticket);
-
-            //    PickBalls();
-            //}
             return tickets;
         }
 

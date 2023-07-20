@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Flurl.Http;
 using AdaptiveCards.Templating;
+using Azure;
 
 namespace API
 {
@@ -39,7 +40,6 @@ namespace API
             }
         }
 
-
         [Function("DrawUpdate")]
         [OpenApiOperation(operationId: "DrawUpdate")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.OK, Description = "The OK response")]
@@ -49,7 +49,8 @@ namespace API
             _logger.LogInformation("DrawUpdate");
             var response = req.CreateResponse();
 
-            if ( _repo  == null ) {
+            if (_repo == null)
+            {
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
                 response.WriteString("No Repo :(");
@@ -87,6 +88,11 @@ namespace API
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             _logger.LogInformation($"Next timer schedule at: {timer.ScheduleStatus.Next}");
 
+            if (_helper == null || _repo == null || _guesshelper == null)
+            {
+                return;
+            }
+
             // Get max draw
             var maxDraw = _helper.LatestDrawNumber();
             _logger.LogInformation($"TimerUpdate Max Draw: {maxDraw}");
@@ -111,12 +117,12 @@ namespace API
             }
 
             // Evaluate last draw
-            var drawResult = _guesshelper.GetDrawResult(new ThunderBallEntity() { DrawNumber = maxDraw });
+            var drawResult = _guesshelper.GetDrawResult(new ThunderBallEntity() { DrawNumber = maxDraw + 1 });
             // Publish the result
             _ = TeamsNotificationUpdate(drawResult, functionContext);
 
             // Create a New guess
-            var tickets = _helper.CreateTickets();
+            var tickets = _helper.CreateTickets(0);
             _guesshelper.SaveTickets(tickets);
 
         }
@@ -126,7 +132,7 @@ namespace API
         [OpenApiRequestBody(contentType: "application/json", bodyType: typeof(DrawResult), Description = "DrawResult", Example = typeof(DrawResult))]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(DrawResult), Description = "The OK response")]
-        public async Task<HttpResponseData> SendTeams([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "Guess/Teams/{DrawResult?}")] HttpRequestData req, FunctionContext functionContext)
+        public async Task<HttpResponseData> SendTeams([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "Guess/Teams")] HttpRequestData req, FunctionContext functionContext)
         {
             _logger.LogInformation("SendTeams :");
 
@@ -161,7 +167,7 @@ namespace API
 
             try
             {
-                _logger.LogInformation("{json}", Directory.GetParent(functionContext.FunctionDefinition.PathToAssembly).FullName + "\\TeamsNotificationCard.json");
+                _logger.LogInformation("{json}", $"{Directory.GetParent(functionContext.FunctionDefinition.PathToAssembly).FullName}\\TeamsNotificationCard.json");
                 _logger.LogInformation("DrawResult : {drawResult}", JsonConvert.SerializeObject(drawResult));
 
                 // Load Card Template
@@ -208,7 +214,6 @@ namespace API
             rows += $"{{\"type\": \"TableCell\",\"style\": \"attention\",\"items\": [{{\"type\": \"TextBlock\",\"text\": \"\",\"wrap\": true,\"weight\": \"Bolder\"}}]}}";
             rows += "]}";
 
-            var firstrow = true;
             foreach (var item in drawresult.GuessResults)
             {
                 rows += ",{\"type\": \"TableRow\",\"cells\": [";
@@ -219,7 +224,7 @@ namespace API
                 rows += $"{{\"type\": \"TableCell\",\"style\": {(item.GuessBall[3].Match ? "\"good\"" : "\"warning\"")},\"items\": [{{\"type\": \"TextBlock\",\"text\": \"{item.GuessBall[3].Ball}\",\"wrap\": true,\"weight\": \"Bolder\"}}]}},";
                 rows += $"{{\"type\": \"TableCell\",\"style\": {(item.GuessBall[4].Match ? "\"good\"" : "\"warning\"")},\"items\": [{{\"type\": \"TextBlock\",\"text\": \"{item.GuessBall[4].Ball}\",\"wrap\": true,\"weight\": \"Bolder\"}}]}},";
                 rows += $"{{\"type\": \"TableCell\",\"style\": {(item.GuessBall[5].Match ? "\"good\"" : "\"warning\"")},\"items\": [{{\"type\": \"TextBlock\",\"text\": \"{item.GuessBall[5].Ball}\",\"wrap\": true,\"weight\": \"Bolder\"}}]}},";
-                rows += $"{{\"type\": \"TableCell\",\"style\": {(item.Prize>0 ? "\"good\"" : "\"warning\"")},\"items\": [{{\"type\": \"TextBlock\",\"text\": \"{item.Prize}\",\"wrap\": true,\"weight\": \"Bolder\"}}]}}";
+                rows += $"{{\"type\": \"TableCell\",\"style\": {(item.Win > 0 ? "\"good\"" : "\"accent\"")},\"items\": [{{\"type\": \"TextBlock\",\"text\": \"{item.Win}\",\"wrap\": true,\"weight\": \"Bolder\"}}]}}";
                 rows += "]}";
             }
 
@@ -231,7 +236,7 @@ namespace API
 
     public class TimerInfo
     {
-        public TimerStatus ScheduleStatus { get; set; }
+        public TimerStatus? ScheduleStatus { get; set; }
 
         public bool IsPastDue { get; set; }
     }

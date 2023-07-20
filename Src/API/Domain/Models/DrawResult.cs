@@ -12,7 +12,7 @@ namespace Domain.Models
         public List<int> DrawBalls { get; set; }
         public int DrawThunderBall { get; set; }
         public List<GuessResult> GuessResults { get; set; }
-        public int Prize { get; set; }
+        public int Win { get; set; }
 
     }
 
@@ -23,7 +23,7 @@ namespace Domain.Models
             GuessBall = new GuessBall[6];
         }
         public GuessBall[] GuessBall { get; set; }
-        public int Prize { get; set; }
+        public int Win { get; set; }
 
     }
 

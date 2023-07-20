@@ -8,14 +8,14 @@ namespace Lottery.Data
         public List<int> DrawBalls { get; set; }
         public int DrawThunderBall { get; set; }
         public List<GuessResult> GuessResults { get; set; }
-        public int Prize { get; set; }
+        public int Win { get; set; }
 
     }
 
     public class GuessResult
     {
         public GuessBall[] GuessBall { get; set; }
-        public int Prize { get; set; }
+        public int Win { get; set; }
 
     }
 

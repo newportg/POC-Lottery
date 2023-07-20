@@ -17,56 +17,12 @@
 }
 else
 {
-@*    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <span>DrawNumber</span>
-                </th>
-                <th>
-                    <span>Ball1</span>
-                </th>
-                <th>
-                    <span>Ball2</span>
-                </th>
-                <th>
-                    <span>Ball3</span>
-                </th>
-                <th>
-                    <span>Ball4</span>
-                </th>
-                <th>
-                    <span>Ball5</span>
-                </th>
-                <th>
-                    <span>Thunderball</span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var draw in draws)
-            {
-                <tr>
-                    <td>@draw.DrawNumber</td>
-                    <td>@draw.Balls[0]</td>
-                    <td>@draw.Balls[1]</td>
-                    <td>@draw.Balls[2]</td>
-                    <td>@draw.Balls[3]</td>
-                    <td>@draw.Balls[4]</td>
-                    <td>@draw.BonusBalls[0]</td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-
     @((MarkupString)guessResults)
-
 }
 
 @code
 {
     IList<Ticket> guesses = new List<Ticket>();
-    //IList<Lottery> draws = new List<Lottery>();
     private string DrawNumber { get; set; } = "";
     string guessResults;
 
@@ -75,12 +31,6 @@ else
     protected override async Task OnInitializedAsync()
     {
         guesses = await ThunderBallService.GetLastGuessesAsync();
-        //if (guesses.Count > 0)
-        //{
-        //    draws = await ThunderBallService.GetDrawbyDrawNumberAsync(guesses[0].DrawNumber);
-        //}
-
-        //GuessResults();
         DrawNumber = guesses[0].DrawNumber;
 
         results = await ThunderBallService.GetDrawResultAsync(DrawNumber);
@@ -90,18 +40,12 @@ else
 
     public async Task Select()
     {
-        //guesses = await ThunderBallService.GetGuessesByDrawNumberAsync(DrawNumber);
-        //draws = await ThunderBallService.GetDrawbyDrawNumberAsync(DrawNumber);
-
         results = await ThunderBallService.GetDrawResultAsync(DrawNumber);
         GuessResults();
-        //DrawNumber = results.DrawNumber;
     }
 
     public string GuessResults()
     {
-        int match = 0;
-
         guessResults = "<table class='table table-bordered table-hover'>";
         guessResults += "<thead><tr><th><span>DrawNumber</span></th><th><span>Ball1</span></th><th><span>Ball2</span></th><th><span>Ball3</span></th>";
         guessResults += "<th><span>Ball4</span></th><th><span>Ball5</span></th><th><span>Thunderball</span></th><th><span></span></th></tr></thead><tbody>";
@@ -135,7 +79,7 @@ else
 
         guessResults += "<table class='table table-bordered table-hover'>";
         guessResults += "<thead><tr><th><span>DrawNumber</span></th><th><span>Ball1</span></th>";
-        guessResults += "<th><span>Ball2</span></th><th><span>Ball3</span></th><th><span>Ball4</span></th><th><span>Ball5</span></th><th><span>Thunderball</span></th><th><span>Prize</span></th></tr></thead>";
+        guessResults += "<th><span>Ball2</span></th><th><span>Ball3</span></th><th><span>Ball4</span></th><th><span>Ball5</span></th><th><span>Thunderball</span></th><th><span>Win</span></th></tr></thead>";
         guessResults += "<tbody>";
 
         foreach (var guess in results.GuessResults)
@@ -143,130 +87,42 @@ else
             guessResults += "<tr>";
             guessResults += $"<td>{results.DrawNumber}</td>";
 
-            string prize = string.Empty;
-            match = 0;
-
+            string Win = string.Empty;
             foreach( var item in guess.GuessBall)
             {
                 if( item.Match && !item.Thunderball)
                 {
                     guessResults += $"<td bgcolor=#fff00>{item.Ball}</td>";
-                    prize += "&#9745;";
+                    Win += "&#9745;";
                 }
                 else if (item.Match && item.Thunderball)
                 {
                     guessResults += $"<td bgcolor=#fff00>{item.Ball}</td>";
-                    prize += "&#9745;";
+                    Win += "&#9745;";
                 }
                 else if (!item.Match && item.Thunderball)
                 {
                     guessResults += $"<td>{item.Ball}</td>";
-                    prize += "&#9744;";
+                    Win += "&#9744;";
                 }
                 else
                 {
                     guessResults += $"<td>{item.Ball}</td>";
-                    prize += "&#9744;";
+                    Win += "&#9744;";
                 }
             }
 
-            if( guess.Prize > 0)
+            if( guess.Win > 0)
             {
-                prize += "&#128512; £" + guess.Prize;
+                Win += "&#128512; £" + guess.Win;
             }
 
-            guessResults += $"<td>{prize}</td>";
+            guessResults += $"<td>{Win}</td>";
             guessResults += "</tr>";
         }
         guessResults += "</tbody></table>";
 
         return guessResults;
     }
-
-    //public string GuessResults()
-    //{
-    //    int match = 0;
-
-    //    guessResults = "<table class='table table-bordered table-hover'>";
-    //    guessResults += "<thead><tr><th><span>DrawNumber</span></th><th><span>Ball1</span></th>";
-    //    guessResults += "<th><span>Ball2</span></th><th><span>Ball3</span></th><th><span>Ball4</span></th><th><span>Ball5</span></th><th><span>Thunderball</span></th><th><span>Prize</span></th></tr></thead>";
-    //    guessResults += "<tbody>";
-
-    //    foreach( var guess in this.guesses)
-    //    {
-    //        guessResults += "<tr>";
-    //        guessResults += $"<td>{guess.DrawNumber}</td>";
-
-    //        string prize = string.Empty;
-    //        match = 0;
-
-    //        for(int i=0; i< 5; i++)
-    //        {
-    //            if (draws.Count > 0)
-    //            {
-    //                if (draws[0].Balls.Contains(guess.Balls[i]))
-    //                {
-    //                    guessResults += $"<td bgcolor=#fff00>{guess.Balls[i]}</td>";
-    //                    prize += "&#9745;";
-    //                    match++;
-    //                }
-    //                else
-    //                {
-    //                    guessResults += $"<td>{guess.Balls[i]}</td>";
-    //                    prize += "&#9744;";
-    //                }
-    //            }
-    //            else
-    //            {
-    //                guessResults += $"<td>{guess.Balls[i]}</td>";
-    //                prize += "&#9744;";
-    //            }
-    //        }
-    //        if (draws.Count > 0 && draws[0].BonusBalls[0] == guess.ThunderBall)
-    //        {
-    //            guessResults += $"<td bgcolor=#fff00>{guess.ThunderBall}</td>";
-    //            prize += "&#9745;";
-
-    //            var amt = PrizeBreakdown(match, 1);
-    //            if (amt > 0)
-    //            {
-    //                prize += "&#128512; £" + amt;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            guessResults += $"<td>{guess.ThunderBall}</td>";
-    //            prize += "&#9744;";
-
-    //            var amt = PrizeBreakdown(match, 0);
-    //            if (amt > 0)
-    //            {
-    //                prize += "&#128512; £" + amt;
-    //            }
-
-    //        }
-
-    //        guessResults += $"<td>{prize}</td>";
-
-    //        guessResults += "</tr>";
-    //    }
-    //    guessResults += "</tbody></table>";
-
-    //    return guessResults;
-    //}
-
-    //private int PrizeBreakdown(int match, int tball)
-    //{
-    //    if( match == 0 && tball == 1) { return 3; }
-    //    else if (match == 1 && tball == 1) { return 5; }
-    //    else if (match == 2 && tball == 1) { return 10; }
-    //    else if (match == 3 && tball == 0) { return 10; }
-    //    else if (match == 3 && tball == 1) { return 20; }
-    //    else if (match == 4 && tball == 0) { return 100; }
-    //    else if (match == 4 && tball == 1) { return 250; }
-    //    else if (match == 5 && tball == 0) { return 5000; }
-    //    else if (match == 5 && tball == 1) { return 50000; }
-    //    return 0;
-    //}
 }
 

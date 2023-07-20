@@ -14,7 +14,7 @@ namespace API
         private readonly ILogger _logger;
         private readonly IHelper? _helper;
 
-        public DeltaInfo(ILogger<DrawUpdate> logger, IHelper helper)
+        public DeltaInfo(ILogger<DeltaInfo> logger, IHelper helper)
         {
             _logger = logger;
             _helper = helper;
@@ -30,11 +30,18 @@ namespace API
             var response = req.CreateResponse();
 
             // Get Previous Draws
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetDelta : _helper null");
+                return response;
+            }
+
             var previousdraws = _helper.GetDraws(new ThunderBallEntity());
 
             var delta = new Delta();
             delta.CreateRange(previousdraws);
-            
+
             response.StatusCode = HttpStatusCode.OK;
             response.Headers.Add("Content-Type", "application/json; charset=utf-8");
 

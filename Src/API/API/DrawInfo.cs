@@ -19,7 +19,7 @@ namespace API
         private readonly ILogger _logger;
         private readonly IHelper? _helper;
 
-        public DrawInfo(ILogger<DrawUpdate> logger, IHelper helper)
+        public DrawInfo(ILogger<DrawInfo> logger, IHelper helper)
         {
             _logger = logger;
             _helper = helper;
@@ -27,13 +27,20 @@ namespace API
 
         [Function("GetDrawByRowKey")]
         [OpenApiOperation(operationId: "GetDrawByRowKey", Description = "Get a draw by id")]
-        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "RowKey")]
+        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(int), Description = "RowKey")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(List<Lottery>), Description = "The OK response")]
         public HttpResponseData GetDrawById([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/{id:int}")] HttpRequestData req, int id)
         {
             _logger.LogInformation($"GetDrawByRowKey :{id}");
             var response = req.CreateResponse();
+
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetDrawById : _helper null");
+                return response;
+            }
 
             List<Lottery> res;
             if (id == 0)
@@ -72,6 +79,13 @@ namespace API
             _logger.LogInformation("GetDraws");
             var response = req.CreateResponse();
 
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetDraws : _helper null");
+                return response;
+            }
+
             var res = _helper.GetDraws(new ThunderBallEntity());
             if (res == null)
             {
@@ -98,6 +112,13 @@ namespace API
         {
             _logger.LogInformation("GetHotBalls :");
             var response = req.CreateResponse();
+
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetHotBalls : _helper null");
+                return response;
+            }
 
             var dic = _helper.HotBalls();
             if (dic == null)
@@ -126,6 +147,13 @@ namespace API
             _logger.LogInformation("GetDeltas :");
             var response = req.CreateResponse();
 
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetDelta : _helper null");
+                return response;
+            }
+
             var dic = _helper.Deltas();
             if (dic == null)
             {
@@ -152,6 +180,13 @@ namespace API
         {
             _logger.LogInformation("GetDrawTotals :");
             var response = req.CreateResponse();
+
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetDrawTotal : _helper null");
+                return response;
+            }
 
             var dic = _helper.DrawTotals();
             if (dic == null)
@@ -180,6 +215,13 @@ namespace API
         {
             _logger.LogInformation("GetDrawTotals :");
             var response = req.CreateResponse();
+
+            if (_helper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("DrawTotalByThunderBall : _helper null");
+                return response;
+            }
 
             var dic = _helper.DrawTotalByThunderBall();
             if (dic == null)

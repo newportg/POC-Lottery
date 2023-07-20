@@ -3,9 +3,6 @@ using Domain.Models;
 using Flurl.Util;
 using Library.Azure.Odata;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
 namespace API
 {
@@ -14,6 +11,7 @@ namespace API
         bool SaveTickets(List<Ticket> tickets);
         List<Ticket>? GetGuesses(ThunderBallEntity entity);
         DrawResult GetDrawResult(ThunderBallEntity entity);
+        void RegressionTest(Dictionary<string, ITableStore> dict);
     }
 
     public class GuessHelper : IGuessHelper
@@ -21,9 +19,9 @@ namespace API
         private readonly IHelper? _helper;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
-        private readonly ITableStore? _repo;
+        private ITableStore _repo;
 
-        public GuessHelper(IHelper helper, Dictionary<string, ITableStore> dict, IMapper mapper, ILogger<DrawUpdate> logger)
+        public GuessHelper(IHelper helper, Dictionary<string, ITableStore> dict, IMapper mapper, ILogger<GuessHelper> logger)
         {
             _logger = logger;
             _mapper = mapper;
@@ -84,6 +82,11 @@ namespace API
             {
                 return false;
             }
+            if (_repo == null)
+            {
+                return false;
+            }
+
 
             // Map Tickets to TableEntity
             var guesses = _mapper.Map<List<ThunderBallEntity>>(tickets);
@@ -109,7 +112,7 @@ namespace API
                 var res = _repo.Select<Library.Azure.Odata.Models.OData<ThunderBallEntity>>("PartitionKey eq 'Thunderball'");
                 rowcount = res.Value.Count;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                rowcount = 0;
             }
@@ -127,11 +130,16 @@ namespace API
             return true;
         }
 
-        public DrawResult GetDrawResult(ThunderBallEntity entity)
+        public DrawResult? GetDrawResult(ThunderBallEntity entity)
         {
             var guesses = GetGuesses(entity);
-            var draws = _helper.GetDraws(entity);
 
+            if (_helper == null || guesses == null)
+            {
+                return null;
+            }
+
+            var draws = _helper.GetDraws(entity);
             var drawResult = new DrawResult();
             drawResult.DrawNumber = entity.DrawNumber;
 
@@ -153,12 +161,20 @@ namespace API
 
                 // ThunderBall
                 gr.GuessBall[5] = funcBall(funcfunc(draws,guess.ThunderBall, true), guess.ThunderBall, true);
-                gr.Prize = PrizeBreakdown(gr.GuessBall);
+                gr.Win = WinBreakdown(gr.GuessBall);
 
                 drawResult.GuessResults.Add(gr);
             }
 
             return drawResult;
+        }
+
+        public void RegressionTest(Dictionary<string, ITableStore> dict)
+        {
+            if (!dict.TryGetValue(Environment.GetEnvironmentVariable("RegTestContainer"), out _repo))
+            {
+                _logger.LogError($"No Table defined :-{Environment.GetEnvironmentVariable("RegTestContainer")}");
+            }
         }
 
         private bool funcfunc(List<Lottery>draws, int guess, bool tball=false)
@@ -182,7 +198,7 @@ namespace API
             }
             return new GuessBall(guessBall, false, thunderball);
         }
-        private int PrizeBreakdown(GuessBall[] gb)
+        private int WinBreakdown(GuessBall[] gb)
         {
             int match = 0;
             int tball = 0;

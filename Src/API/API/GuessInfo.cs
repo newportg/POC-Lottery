@@ -41,6 +41,13 @@ namespace API
             _logger.LogInformation($"GetGuessByDrawNumber :{id}");
             var response = req.CreateResponse();
 
+            if (_guesshelper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetGuessByDrawNumber : _helper null");
+                return response;
+            }
+
             // If there are already Guesses with drawnumber+1 get those
             var res = _guesshelper.GetGuesses(new ThunderBallEntity() { DrawNumber = id.ToString() });
             if (res == null)
@@ -70,6 +77,13 @@ namespace API
             _logger.LogInformation("GetTickets :");
             var response = req.CreateResponse();
 
+            if (_helper == null || _guesshelper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetTickets : _helper null");
+                return response;
+            }
+
             try
             {
                 // Get latest drawnumber +1 
@@ -84,7 +98,7 @@ namespace API
                     _logger.LogInformation($"Generate Guesses for {drawnumber}");
 
                     // else Create new ones
-                    tickets = _helper.CreateTickets();
+                    tickets = _helper.CreateTickets(0);
                 }
 
                 if (tickets == null)
@@ -124,6 +138,13 @@ namespace API
             var obj = JsonConvert.DeserializeObject<List<Ticket>>(body);
             var response = req.CreateResponse();
 
+            if (_guesshelper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("SaveGuesses : _helper null");
+                return response;
+            }
+
             try
             {
                 // Dont save if there are already tickets with this draw number 
@@ -151,6 +172,13 @@ namespace API
         {
             _logger.LogInformation("GetLastGuesses :");
             var response = req.CreateResponse();
+
+            if (_guesshelper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetLastGuesses : _helper null");
+                return response;
+            }
 
             try
             {
@@ -189,13 +217,20 @@ namespace API
 
         [Function("GetDrawResult")]
         [OpenApiOperation(operationId: "GetDrawResult", Description = "Get a draw result")]
-        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(string), Description = "DrawNumber")]
+        [OpenApiParameter(name: "id", In = ParameterLocation.Path, Required = true, Type = typeof(int), Description = "DrawNumber")]
         [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(DrawResult), Description = "The OK response")]
         public HttpResponseData GetDrawResult([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Guess/Result/{id:int?}")] HttpRequestData req, int id)
         {
             _logger.LogInformation($"GetDrawResult :{id}");
             var response = req.CreateResponse();
+
+            if (_guesshelper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetDrawResult : _helper null");
+                return response;
+            }
 
             try
             {
