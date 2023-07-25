@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Domain.Rules;
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Mapping
@@ -24,7 +25,9 @@ namespace Domain.Mapping
 
                 .ForMember(dst => dst.BallTotal, opt => opt.MapFrom(src => BallTotal(src)))
                 .ForMember(dst => dst.NumOddBalls, opt => opt.MapFrom(src => NumOddBalls(src)))
-                .ForMember(dst => dst.Delta, opt => opt.MapFrom(src => Delta(src)));
+                .ForMember(dst => dst.Delta, opt => opt.MapFrom(src => Delta(src)))
+                .ForMember(dst => dst.RenatoGianellaPattern, opt => opt.MapFrom(src => RenatoGianellaPattern(src)))
+                .ForMember(dst => dst.TBallRenatoGianellaPattern, opt => opt.MapFrom(src => TBallRenatoGianellaPattern(src)));
         }
 
         private List<int> Balls(ThunderBallEntity src)
@@ -77,6 +80,56 @@ namespace Domain.Mapping
             balls[4] = int.Parse(src.Ball5) - int.Parse(src.Ball4);
 
             return balls;
+        }
+
+        /// <summary>
+        /// Brazillian Mathamatician
+        ///  If you write out the lottery numbers into rows
+        ///  and assign each row a colour. 
+        ///  Then you can see which patterns occur the most.
+        ///  
+        /// 1-9   = R
+        /// 10-19 = G
+        /// 20-29 = B
+        /// 30-32 = Y
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        private int[] RenatoGianellaPattern(ThunderBallEntity src)
+        {
+            var rgby = new int[_rules.NoOfMainBalls];
+            List<int>balls = Balls(src);
+
+            var div = (int)Math.Ceiling((double)_rules.NoOfBalls / _rules.NoOfMainBalls);
+
+            rgby[0] = BallRGColour(balls[0], div);
+            rgby[1] = BallRGColour(balls[1], div);
+            rgby[2] = BallRGColour(balls[2], div);
+            rgby[3] = BallRGColour(balls[3], div);
+            rgby[4] = BallRGColour(balls[4], div);
+
+            return rgby;
+        }
+
+        private int TBallRenatoGianellaPattern(ThunderBallEntity src)
+        {
+            var div = (int)Math.Ceiling((double)_rules.ThunderBallMax / _rules.NoOfMainBalls);
+            var ball = int.Parse(src.Thunderball);
+
+            return BallRGColour(ball, div);
+        }
+
+        private static int BallRGColour(int ball, int div)
+        {
+            for (int i = 0; i <= _rules.NoOfMainBalls - 1; i++)
+            {
+                var gt = ball > (div * i);
+                var lt = ball < (div * (i + 1)) + 1;
+
+                if (ball > (div * i) && ball < (div * (i + 1)) + 1)
+                    return i;
+            }
+            return -1;
         }
     }
 }

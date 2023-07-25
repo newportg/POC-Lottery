@@ -17,7 +17,8 @@ namespace Domain.Models
         // Analysis
         public int BallTotal { get; set; }
         public int NumOddBalls { get; set; }
-        //public int[] RenatoGianellaPattern { get; set; }
+        public int[] RenatoGianellaPattern { get; set; }
+        public int TBallRenatoGianellaPattern { get; set; }
         public int[] Delta { get; set; }
 
         public bool HasBeenDrawn(int[] ticket)

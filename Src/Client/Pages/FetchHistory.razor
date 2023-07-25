@@ -61,7 +61,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var draw in items)
+@*            @foreach (var draw in items)
             {
                 <tr>
                     <td>@draw.DrawDate</td>
@@ -75,26 +75,190 @@ else
                     <td>@draw.Machine</td>
                     <td>@draw.DrawNumber</td>
                 </tr>
-            }
+            }*@
+            @((MarkupString)drawResults)
         </tbody>
     </table>
+
+    <h1>Renato Gianella Pattern</h1>
+    <div><div>@((MarkupString)ballsColorGrid)</div><div>@((MarkupString)tballsColorGrid)</div></div>
+   
+
+    <h1>RG Pattern Occurrance</h1>
+    @((MarkupString)rgpPrint)
 }
 
 @code
 {
     IList<Lottery> items = new List<Lottery>();
     string updated;
+    string drawResults;
     private bool IsSortedAscending;
     private string CurrentSortColumn;
+    List<int[]> rgp;
+    string rgpPrint;
+    string ballsColorGrid;
+    string tballsColorGrid;
+    ThunderBallRules rules;
 
     protected override async Task OnInitializedAsync()
     {
+        rules = new ThunderBallRules();
+
         items = await ThunderBallService.GetThunderballAsync();
+        DrawResultsTable();
+        rgpPrint = RGPrint();
+        ballsColorGrid = BallsColorGrid();
+        tballsColorGrid = TBallsColorGrid();
+
+
     }
 
     public async Task Update()
     {
         updated = await ThunderBallService.UpdateDrawAsync();
+    }
+
+    public void DrawResultsTable()
+    {
+        if (items == null)
+            return;
+
+        rgp = new List<int[]>();
+
+        foreach (var item in items)
+        {
+            rgp.Add(item.RenatoGianellaPattern);
+
+            drawResults += "<tr>";
+            drawResults += $"<td>{item.DrawDate}</td>";
+
+            drawResults += $"<td bgcolor={bgcolor(item.RenatoGianellaPattern[0])}>{item.Balls[0]}</td>";
+            drawResults += $"<td bgcolor={bgcolor(item.RenatoGianellaPattern[1])}>{item.Balls[1]}</td>";
+            drawResults += $"<td bgcolor={bgcolor(item.RenatoGianellaPattern[2])}>{item.Balls[2]}</td>";
+            drawResults += $"<td bgcolor={bgcolor(item.RenatoGianellaPattern[3])}>{item.Balls[3]}</td>";
+            drawResults += $"<td bgcolor={bgcolor(item.RenatoGianellaPattern[4])}>{item.Balls[4]}</td>";
+
+            drawResults += $"<td bgcolor={bgcolor(item.TBallRenatoGianellaPattern)}>{item.BonusBalls[0]}</td>";
+
+            drawResults += $"<td>{item.BallSet}</td>";
+            drawResults += $"<td>{item.Machine}</td>";
+            drawResults += $"<td>{item.DrawNumber}</td>";
+            drawResults += "</tr>";
+        }
+    }
+
+    public string RGPrint()
+    {
+        // Create a dictionary to keep track of array occurrences
+        Dictionary<string, int> arrayOccurrences = new Dictionary<string, int>();
+
+        // Count the arrays in the list
+        foreach (var arr in rgp)
+        {
+            string arrayKey = string.Join(",", arr);
+            if (arrayOccurrences.ContainsKey(arrayKey))
+            {
+                arrayOccurrences[arrayKey]++;
+            }
+            else
+            {
+                arrayOccurrences[arrayKey] = 1;
+            }
+        }
+
+        var sortedDict = from entry in arrayOccurrences orderby entry.Key ascending select entry;
+
+        // Print the counts
+        rgpPrint = "<table><thead><tr><th>Count</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody>";
+        foreach (var kvp in sortedDict)
+        {
+            int[] intArray = kvp.Key.Split(',').Select(int.Parse).ToArray();
+
+            rgpPrint += $"<tr><td>{kvp.Value}</td>"; //<td>{kvp.Key}</td></tr>";
+
+            rgpPrint += $"<td bgcolor={bgcolor(intArray[0])}>{intArray[0]}</td>";
+            rgpPrint += $"<td bgcolor={bgcolor(intArray[1])}>{intArray[1]}</td>";
+            rgpPrint += $"<td bgcolor={bgcolor(intArray[2])}>{intArray[2]}</td>";
+            rgpPrint += $"<td bgcolor={bgcolor(intArray[3])}>{intArray[3]}</td>";
+            rgpPrint += $"<td bgcolor={bgcolor(intArray[4])}>{intArray[4]}</td>";
+
+            rgpPrint += "</tr>";
+        }
+        rgpPrint += "</tbody></table>";
+
+        return rgpPrint;
+    }
+
+    private string bgcolor(int rgvalue)
+    {
+        if (rgvalue == 0)
+            return "#0099ff";
+        if (rgvalue == 1)
+            return "#33cc33";
+        if (rgvalue == 2)
+            return "#ff9933";
+        if (rgvalue == 3)
+            return "#cc6699";
+        if (rgvalue == 4)
+            return "#3366ff";
+
+        return "lightgrey";
+    }
+
+    public string BallsColorGrid()
+    {
+        string rgBalls;
+        var div = (int)Math.Ceiling((double)rules.NoOfBalls / rules.NoOfMainBalls);
+
+        rgBalls = "<table class='table-bordered'><tbody>";
+
+        int i = 0;
+        for (int z = 0; z < div; z++)  // No of Rows
+        {
+            i = z;
+            rgBalls += "<tr>";
+
+            for (int j = 0; j < rules.NoOfMainBalls && i < rules.NoOfBalls; j++, i += div) // No. of cols / No. of Balls
+            {
+                rgBalls += $"<td bgcolor={bgcolor(j)}>{i + 1}</td>";
+            }
+
+            rgBalls += "</tr>";
+        }
+
+        rgBalls += "</tr></tbody></table>";
+
+        return rgBalls;
+    }
+
+    public string TBallsColorGrid()
+    {
+        string rgBalls = string.Empty;
+        var div = (int)Math.Ceiling((double)rules.ThunderBallMax / rules.NoOfMainBalls);
+
+        // 1 4 7 10 13
+        // 2 5 8 11 14
+        // 3 6 9 12
+
+        rgBalls = "<table class='table-bordered'><tbody>";
+        int i = 0;
+        for (int z = 0; z < div; z++)  // No of Rows
+        {
+            i = z;
+            rgBalls += "<tr>";
+
+            for (int j = 0; j < rules.NoOfMainBalls && i < rules.ThunderBallMax; j++, i += div) // No. of cols / No. of Balls
+            {
+                rgBalls += $"<td bgcolor={bgcolor(j)}>{i + 1}</td>";
+            }
+
+            rgBalls += "</tr>";
+        }
+
+        rgBalls += "</tr></tbody></table>";
+
+        return rgBalls;
     }
 
     private string GetSortStyle(string columnName)
@@ -129,7 +293,7 @@ else
         {
             if (IsSortedAscending)
             {
-            items = items.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                items = items.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
             }
             else
             {
@@ -140,5 +304,6 @@ else
             IsSortedAscending = !IsSortedAscending;
         }
     }
+
 }
 

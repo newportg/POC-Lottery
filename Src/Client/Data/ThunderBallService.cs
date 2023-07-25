@@ -20,6 +20,7 @@ namespace Lottery.Data
         Task<List<Ticket>> GetLastGuessesAsync();
         Task<List<Ticket>> GetGuessesByDrawNumberAsync(string drawnumber);
         Task<DrawResult> GetDrawResultAsync(string drawnumber);
+        Task<DrawAnalysis> GetDrawAnalysisAsync();
     }
 
     public class ThunderBallService : IThunderBallService
@@ -123,6 +124,13 @@ namespace Lottery.Data
         {
             Url url = new($"https://func-poc-lottery-vse-ne.azurewebsites.net/api/Guess/Result/{drawnumber}");
             var data = await url.GetJsonAsync<DrawResult>();
+            return data;
+        }
+
+        public async Task<DrawAnalysis> GetDrawAnalysisAsync()
+        {
+            Url url = new($"https://func-poc-lottery-vse-ne.azurewebsites.net/api/GetDrawAnalysis");
+            var data = await url.GetJsonAsync<DrawAnalysis>();
             return data;
         }
     }

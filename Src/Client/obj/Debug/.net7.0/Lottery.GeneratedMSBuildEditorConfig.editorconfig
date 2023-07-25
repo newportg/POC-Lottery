@@ -20,8 +20,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/BlazorCharts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmxhem9yQ2hhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/DrawAnalysis.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJhd0FuYWx5c2lzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/NEWPORTG/source/Personal/Azure Functions/POC-Lottery/Src/Client/Pages/DrawResult.razor]

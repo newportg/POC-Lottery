@@ -8,4 +8,8 @@
     <PackageReference Include="Flurl.Http" Version="3.2.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,207 @@
+﻿@page "/drawanalysis"
+
+@using Lottery.Data
+@inject IThunderBallService ThunderBallService
+
+<h1>DrawAnalysis</h1>
+
+<h3>RG Guess</h3>
+@((MarkupString)rgGuess)
+
+<h3>RG Guess Print</h3>
+@((MarkupString)rgGuessD)
+
+@code {
+    ThunderBallRules rules;
+    Data.DrawAnalysis da;
+    string rgGuess;
+    string rgGuessD;
+
+    Dictionary<int, List<List<int>>> rgGuessDraw;
+    //List<List<int>> rgGuessDraw;
+
+    protected override async Task OnInitializedAsync()
+    {
+        rules = new ThunderBallRules();
+        //rgGuessDraw = new List<List<int>>();
+        rgGuessDraw = new Dictionary<int, List<List<int>>>();
+
+        da = await ThunderBallService.GetDrawAnalysisAsync();
+        rgGuess = RGguessPrint();
+        rgGuessD = RGguessDrawPrint();
+    }
+
+    public string RGguessPrint()
+    {
+        if (da == null) return string.Empty;
+
+        var div = (int)Math.Ceiling((double)rules.NoOfBalls / rules.NoOfMainBalls);
+
+        // Print the counts
+        rgGuess = "<table><thead><tr><th>Range</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody>";
+
+        var ary = da.RGguess;
+        var lowr = 1;
+        var hir = div;
+
+        for (int i = 0; i < 5; i++)
+        {
+            rgGuess += "<tr>";
+            rgGuess += $"<td>{lowr}-{hir}</td>";
+
+            for (int j = 0; j < 5; j++)
+            {
+                rgGuess += $"<td>{ary[j, i]}</td>";
+
+                if (ary[j, i] > 0)
+                {
+                    if (rgGuessDraw.ContainsKey(j))
+                    {
+                        rgGuessDraw[j].Add(RGguessDraw(lowr, hir, ary[j, i]));
+                    }
+                    else
+                    {
+                        var col = new List<List<int>>();
+                        col.Add(RGguessDraw(lowr, hir, ary[j, i]));
+                        rgGuessDraw.Add(j, col);
+                    }
+                }
+            }
+
+            rgGuess += "</tr>";
+            lowr = hir + 1;
+            hir = hir + div;
+        }
+
+        rgGuess += "</tbody></table>";
+
+        return rgGuess;
+    }
+
+    private int[,] Transpose(Dictionary<int, List<List<int>>> draws)
+    {
+        if (draws == null) return null;
+
+        var gueses = new int[9,5];
+
+        int col = 0;
+        foreach( var item in draws)
+        {
+            int row = 0;
+            foreach (var lis in item.Value)
+            {
+                foreach (var ball in lis)
+                {
+                    gueses[row++, col] = ball;
+                }
+            }
+            col++;
+        }
+
+        return gueses;
+    }
+
+    private string RGguessDrawPrint()
+    {
+        if (rgGuessDraw == null) return string.Empty;
+
+        var guesses = Transpose(rgGuessDraw);
+
+        rgGuessD = "<table><thead><tr><th>key</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody>";
+
+        for (int row = 0; row < 9; row++)
+        {
+            rgGuessD += "<tr>";
+            rgGuessD += $"<td>{row}</td>";
+
+            for (int col = 0; col < 5; col++)
+            {
+                rgGuessD += $"<td bgcolor={bgcolor(division(guesses[row, col]))}>{guesses[row, col]}</td>";
+            }
+            rgGuessD += "</tr>";
+        }
+        rgGuessD += "</tbody></table>";
+
+        return rgGuessD;
+    }
+
+    private List<int> RGguessDraw(int rLo, int rHi, int no)
+    {
+        List<int> selectedNumbers = new List<int>();
+        List<int> numbers = new List<int>();
+
+        for( int i=0; i< (rHi-rLo); i++)
+        {
+            numbers.Add(rLo + i);
+        }
+
+        var idx = no;
+        if( no > (rHi-rLo))
+            idx = (rHi-rLo);
+
+        for (int i = 0; i < idx; i++)
+        {
+            Random random = new Random();
+            int index = random.Next(numbers.Count);
+            int selectedNumber = numbers[index];
+            selectedNumbers.Add(selectedNumber);
+            numbers.RemoveAt(index);
+        }
+
+        if (no > (rHi - rLo))
+        {
+            // replinish numbers
+            for (int i = 0; i < (rHi - rLo); i++)
+            {
+                numbers.Add(rLo + i);
+            }
+
+            // select additional numbers
+            for( int i =0; i< no - (rHi-rLo); i++)
+            {
+                Random random = new Random(i);
+                int index = random.Next(numbers.Count);
+                int selectedNumber = numbers[index];
+                selectedNumbers.Add(selectedNumber);
+                numbers.RemoveAt(index);
+            }
+        }
+
+        return selectedNumbers;
+    }
+
+    private int division(int ball)
+    {
+        var div = (int)Math.Ceiling((double)rules.NoOfBalls / rules.NoOfMainBalls);
+        var lowr = 1;
+        var hir = div;
+
+        for( int i=0; i<5; i++)
+        {
+            if( ball >= lowr && ball <= hir)
+            {
+                return i;    
+            }
+            lowr = hir + 1;
+            hir = hir + div;
+        }
+
+       return -1;
+    }
+
+    private string bgcolor(int rgvalue)
+    {
+        if (rgvalue == 0)
+            return "#0099ff";
+        if (rgvalue == 1)
+            return "#33cc33";
+        if (rgvalue == 2)
+            return "#ff9933";
+        if (rgvalue == 3)
+            return "#cc6699";
+        if (rgvalue == 4)
+            return "#3366ff";
+
+        return "lightgrey";
+    }
+}
