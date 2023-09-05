@@ -8,14 +8,10 @@ namespace Camalot.Mapping
 {
     public class ToLotteryDto : Profile
     {
-
-        //private static ThunderBallRules _rules;
-
         public ToLotteryDto()
         {
-            //_rules = new ThunderBallRules();
-
             CreateMap<ThunderBallRaw, LotteryDto>()
+                .ForMember(dst => dst.Lottery, opt => opt.MapFrom(src => "Thunderball"))
                 .ForMember(dst => dst.Balls, opt => opt.MapFrom(src => Balls(src)))
                 .ForMember(dst => dst.BonusBalls, opt => opt.MapFrom(src => BonusBall(src)))
                 .ForMember(dst => dst.BallSet, opt => opt.MapFrom(src => src.BallSet))
@@ -24,7 +20,6 @@ namespace Camalot.Mapping
                 .ForMember(dst => dst.Machine, opt => opt.MapFrom(src => src.Machine));
         }
 
-        //------ ThunderBallEntity
         private DateTime DrawDate(ThunderBallRaw src)
         {
             if (string.IsNullOrEmpty(src.DrawDate))

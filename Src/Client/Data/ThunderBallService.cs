@@ -11,7 +11,7 @@ namespace Lottery.Data
         Task<List<Lottery>> GetThunderballAsync();
         Task<List<Lottery>> GetDrawbyDrawNumberAsync(string drawnumber);
         Task<string> UpdateDrawAsync();
-        Task<Dictionary<int, int>> GetHotBallsAsync();
+        Task<List<HotBalls>> GetHotBallsAsync();
         Task<Dictionary<int, int>> GetDrawTotalsAsync();
         Task<Dictionary<int, int>> GetDeltasAsync();
         Task<Dictionary<int, TotalThunder>> DrawTotalByThunderBall();
@@ -60,10 +60,10 @@ namespace Lottery.Data
             return data;
         }
 
-        public async Task<Dictionary<int, int>> GetHotBallsAsync()
+        public async Task<List<HotBalls>> GetHotBallsAsync()
         {
-            Url url = new("https://func-poc-lottery-vse-ne.azurewebsites.net/api/Draw/HotBalls");
-            var data = await url.GetJsonAsync<Dictionary<int, int>>();
+            Url url = new("https://func-poc-lottery-vse-ne.azurewebsites.net/api/HotBalls");
+            var data = await url.GetJsonAsync<List<HotBalls>>();
             return data;
         }
 

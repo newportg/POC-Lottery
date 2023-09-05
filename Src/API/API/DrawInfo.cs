@@ -1,4 +1,5 @@
 using AutoMapper;
+using Domain.Helpers;
 using Domain.Models;
 using Domain.Rules;
 using FluentValidation;
@@ -104,39 +105,39 @@ namespace API
             return response;
         }
 
-        [Function("GetHotBalls")]
-        [OpenApiOperation(operationId: "GetHotBalls", Description = "Get a list of ball that have occured the most")]
-        [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
-        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<int, int>), Description = "The OK response")]
-        public HttpResponseData GetHotBalls([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/HotBalls")] HttpRequestData req)
-        {
-            _logger.LogInformation("GetHotBalls :");
-            var response = req.CreateResponse();
+        //[Function("GetHotBalls")]
+        //[OpenApiOperation(operationId: "GetHotBalls", Description = "Get a list of ball that have occured the most")]
+        //[OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
+        //[OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<int, int>), Description = "The OK response")]
+        //public HttpResponseData GetHotBalls([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Draw/HotBalls")] HttpRequestData req)
+        //{
+        //    _logger.LogInformation("GetHotBalls :");
+        //    var response = req.CreateResponse();
 
-            if (_helper == null)
-            {
-                response.StatusCode = HttpStatusCode.InternalServerError;
-                response.WriteString("GetHotBalls : _helper null");
-                return response;
-            }
+        //    if (_helper == null)
+        //    {
+        //        response.StatusCode = HttpStatusCode.InternalServerError;
+        //        response.WriteString("GetHotBalls : _helper null");
+        //        return response;
+        //    }
 
-            var dic = _helper.HotBalls();
-            if (dic == null)
-            {
-                response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-                response.StatusCode = HttpStatusCode.InternalServerError;
-                response.WriteString("No Repo/Data");
-            }
-            else
-            {
-                response.StatusCode = HttpStatusCode.OK;
-                response.Headers.Add("Content-Type", "application/json; charset=utf-8");
-                var jsonToReturn = JsonConvert.SerializeObject(dic);
-                response.WriteString($"{jsonToReturn}");
-            }
+        //    var dic = _helper.HotBalls();
+        //    if (dic == null)
+        //    {
+        //        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+        //        response.StatusCode = HttpStatusCode.InternalServerError;
+        //        response.WriteString("No Repo/Data");
+        //    }
+        //    else
+        //    {
+        //        response.StatusCode = HttpStatusCode.OK;
+        //        response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+        //        var jsonToReturn = JsonConvert.SerializeObject(dic);
+        //        response.WriteString($"{jsonToReturn}");
+        //    }
 
-            return response;
-        }
+        //    return response;
+        //}
 
         [Function("GetDeltas")]
         [OpenApiOperation(operationId: "GetDeltas", Description = "Get a list of delta frequency")]

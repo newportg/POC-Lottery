@@ -5,46 +5,155 @@
 
 <h1>Total Thunder</h1>
 
-@if (drawTotals == null)
+@if (items == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    @((MarkupString)drawTotals)
-
+    <table class='table-bordered'>
+        <thead>
+            <tr><td colspan=2>Draw Total By ThunderBall</td></tr>
+            <tr>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Total"))">Total</span>
+                    <span class="fa @(GetSortStyle("Total"))"></span>
+                </th>
+                <th>
+                    <span class="sort-link" @onclick="@(()=>SortTable("Count"))">Count</span>
+                        <span class="fa @(GetSortStyle("Count"))"></span>
+                </th>
+                <th>ThunderBalls</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items)
+            {
+                <tr>
+                    <td>@item.Key</td>
+                    <td>@item.Value.Count</td>
+                    <td>@string.Join(",", item.Value.Thunderball)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code
 {
-    string drawTotals;
-
+    //string drawTotals;
+    private bool IsSortedAscending;
+    private string CurrentSortColumn;
+    Dictionary<int, TotalThunder> dic;
+    List<KeyValuePair<int, TotalThunder>> items;
 
     protected override async Task OnInitializedAsync()
     {
-        drawTotals = DrawTotals(await ThunderBallService.DrawTotalByThunderBall());
+        dic = await ThunderBallService.DrawTotalByThunderBall();
+        items = dic.OrderBy(x => x.Key).ToList();
+        //drawTotals = DrawTotals();
     }
 
-    public string DrawTotals(Dictionary<int, TotalThunder> dic)
+    //public string DrawTotals()
+    //{
+    //    string drawTotals;
+
+    //    var items = dic.OrderBy(x => x.Key).ToList();
+
+    //    drawTotals = "<table class='table-bordered'><thead>";
+    //    drawTotals += "<tr><td colspan=2>Draw Total By ThunderBall</td></tr>";
+    //    drawTotals += "<tr>";
+    //    drawTotals += "<td><span class=\"sort-link\" @onclick=\"@(()=>SortTable(\"Total\"))\">Total</span></td>";
+    //    drawTotals += "<td><span class=\"sort-link\" @onclick=\"@(()=>SortTable(\"Count\"))\">Count</span></td>";
+    //    drawTotals += "<td>ThunderBalls</td>";
+    //    drawTotals += "</tr></thead><tbody>";
+
+    //    foreach (var entry in items)
+    //    {
+    //        //int count = entry.Key;
+    //        //TotalThunder tt = entry.Value;
+
+    //        drawTotals += $"<tr><td>{entry.Key}</td><td>{entry.Value.Count}</td><td>{string.Join<int>(",", entry.Value.Thunderball)}</td></tr>";
+    //    }
+    //    drawTotals += "</tbody></table>";
+    //    return drawTotals;
+
+    //}
+
+    private string GetSortStyle(string columnName)
     {
-        string drawTotals;
-
-        var ord = dic.OrderBy(x => x.Key).ToList();
-
-        drawTotals = "<table class='table-bordered'><thead><tr><td colspan=2>Draw Total By ThunderBall</td></tr><tr><td>Total</td><td>Count</td><td>ThunderBalls</td></tr></thead><tbody>";
-
-        foreach (var entry in ord)
+        if (CurrentSortColumn != columnName)
         {
-            int count = entry.Key;
-            TotalThunder tt = entry.Value;
-
-            drawTotals += $"<tr><td>{count}</td><td>{tt.Count}</td><td>{string.Join<int>(",", tt.Thunderball)}</td></tr>";
+            return string.Empty;
         }
-        drawTotals += "</tbody></table>";
-        return drawTotals;
-
+        if (IsSortedAscending)
+        {
+            return "fa-sort-up";
+        }
+        else
+        {
+            return "fa-sort-down";
+        }
     }
 
+    private void SortTable(string columnName)
+    {
+        //Sorting against a column that is not currently sorted against.
+        if (columnName != CurrentSortColumn)
+        {
+            //We need to force order by ascending on the new column
+            //This line uses reflection and will probably perform inefficiently in a production environment.
+
+            if (columnName.Equals("Total"))
+            {
+                items = dic.OrderBy(x => x.Key).ToList();
+            }
+            else if (columnName.Equals("Count"))
+            {
+                items = dic.OrderBy(x => x.Value.Count).ToList();
+            }
+
+            //dic = dic.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+
+            CurrentSortColumn = columnName;
+            IsSortedAscending = true;
+
+        }
+        else //Sorting against same column but in different direction
+        {
+            if (IsSortedAscending)
+            {
+                if (columnName.Equals("Total"))
+                {
+                    items = dic.OrderByDescending(x => x.Key).ToList();
+                }
+                else if (columnName.Equals("Count"))
+                {
+                    items = dic.OrderByDescending(x => x.Value.Count).ToList();
+                }
+
+                //items = dic.OrderByDescending(x => x.Key).ToList();
+                //items = items.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            }
+            else
+            {
+                if (columnName.Equals("Total"))
+                {
+                    items = dic.OrderBy(x => x.Key).ToList();
+                }
+                else if (columnName.Equals("Count"))
+                {
+                    items = dic.OrderBy(x => x.Value.Count).ToList();
+                }
+
+                //items = dic.OrderBy(x => x.Key).ToList();
+                //items = items.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            }
+
+            //Toggle this boolean
+            IsSortedAscending = !IsSortedAscending;
+        }
+    }
 }
 
 

@@ -18,74 +18,37 @@ else
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("DrawDate"))">DrawDate</span>
-                    <span class="fa @(GetSortStyle("DrawDate"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball1"))">Ball1</span>
-                    <span class="fa @(GetSortStyle("Ball1"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball2"))">Ball2</span>
-                    <span class="fa @(GetSortStyle("Ball2"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball3"))">Ball3</span>
-                    <span class="fa @(GetSortStyle("Ball3"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball4"))">Ball4</span>
-                    <span class="fa @(GetSortStyle("Ball4"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball5"))">Ball5</span>
-                    <span class="fa @(GetSortStyle("Ball5"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Thunderball"))">Thunderball</span>
-                    <span class="fa @(GetSortStyle("Thunderball"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("BallSet"))">BallSet</span>
-                    <span class="fa @(GetSortStyle("BallSet"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Machine"))">Machine</span>
-                    <span class="fa @(GetSortStyle("Machine"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("DrawNumber"))">DrawNumber</span>
-                    <span class="fa @(GetSortStyle("DrawNumber"))"></span>
-                </th>
+                <th>DrawDate</th>
+                <th>Ball1</th>
+                <th>Ball2</th>
+                <th>Ball3</th>
+                <th>Ball4</th>
+                <th>Ball5</th>
+                <th>Thunderball</th>
+                <th>BallSet</th>
+                <th>Machine</th>
+                <th>DrawNumber</th>
             </tr>
         </thead>
         <tbody>
-@*            @foreach (var draw in items)
-            {
-                <tr>
-                    <td>@draw.DrawDate</td>
-                    <td>@draw.Balls[0]</td>
-                    <td>@draw.Balls[1]</td>
-                    <td>@draw.Balls[2]</td>
-                    <td>@draw.Balls[3]</td>
-                    <td>@draw.Balls[4]</td>
-                    <td>@draw.BonusBalls[0]</td>
-                    <td>@draw.BallSet</td>
-                    <td>@draw.Machine</td>
-                    <td>@draw.DrawNumber</td>
-                </tr>
-            }*@
             @((MarkupString)drawResults)
         </tbody>
     </table>
 
     <h1>Renato Gianella Pattern</h1>
-    <div><div>@((MarkupString)ballsColorGrid)</div><div>@((MarkupString)tballsColorGrid)</div></div>
-   
-
-    <h1>RG Pattern Occurrance</h1>
-    @((MarkupString)rgpPrint)
+    <div class="flex-container">
+        <div class="flex-child magenta">
+            @((MarkupString)ballsColorGrid)
+        </div>
+        <div class="flex-child magenta">
+            @((MarkupString)tballsColorGrid)
+        </div>
+    </div>
+    <div class="flex-container">
+        <div class="flex-child green">
+            @((MarkupString)rgpPrint)
+        </div>
+    </div>
 }
 
 @code
@@ -93,8 +56,6 @@ else
     IList<Lottery> items = new List<Lottery>();
     string updated;
     string drawResults;
-    private bool IsSortedAscending;
-    private string CurrentSortColumn;
     List<int[]> rgp;
     string rgpPrint;
     string ballsColorGrid;
@@ -259,50 +220,6 @@ else
         rgBalls += "</tr></tbody></table>";
 
         return rgBalls;
-    }
-
-    private string GetSortStyle(string columnName)
-    {
-        if(CurrentSortColumn != columnName)
-        {
-            return string.Empty;
-        }
-        if(IsSortedAscending)
-        {
-            return "fa-sort-up";
-        }
-        else
-        {
-            return "fa-sort-down";
-        }
-    }
-
-    private void SortTable(string columnName)
-    {
-        //Sorting against a column that is not currently sorted against.
-        if (columnName != CurrentSortColumn)
-        {
-            //We need to force order by ascending on the new column
-            //This line uses reflection and will probably perform inefficiently in a production environment.
-            items = items.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
-            CurrentSortColumn = columnName;
-            IsSortedAscending = true;
-
-        }
-        else //Sorting against same column but in different direction
-        {
-            if (IsSortedAscending)
-            {
-                items = items.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
-            }
-            else
-            {
-                items = items.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
-            }
-
-            //Toggle this boolean
-            IsSortedAscending = !IsSortedAscending;
-        }
     }
 
 }

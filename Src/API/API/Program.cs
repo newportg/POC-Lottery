@@ -1,7 +1,9 @@
-using FluentValidation;
 using Camalot;
 using Domain;
 using Domain.Common.Mappings;
+using Domain.Helpers;
+using FluentValidation;
+using Library.Azure.Odata;
 using Microsoft.Azure.Functions.Worker.Extensions.OpenApi.Extensions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Configurations;
@@ -12,10 +14,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Library.Azure.Odata;
-using AutoMapper;
-using System.ComponentModel;
-using Domain.Models;
 
 namespace API
 {
@@ -75,12 +73,16 @@ namespace API
                         var con = Environment.GetEnvironmentVariable("TableContainer");
                         var gus = Environment.GetEnvironmentVariable("GuessContainer");
                         var reg = Environment.GetEnvironmentVariable("RegTestContainer");
+                        var hb = Environment.GetEnvironmentVariable("HotBallsContainer");
+                        var nl = Environment.GetEnvironmentVariable("NeuLotteryContainer");
                         var log = container.GetRequiredService<ILogger<TableStore>>();
                         Dictionary<string, ITableStore> dict = new Dictionary<string, ITableStore>(System.StringComparer.OrdinalIgnoreCase)
                         {
                             { con, new TableStore(act, key, con, log) },
                             { gus, new TableStore(act, key, gus, log) },
-                            { reg, new TableStore(act, key, reg, log) }
+                            { reg, new TableStore(act, key, reg, log) },
+                            { hb, new TableStore(act, key, hb, log) },
+                            { nl, new TableStore(act, key, nl, log) }
                         };
 
                         return dict;
@@ -88,6 +90,7 @@ namespace API
 
                     services.AddSingleton<IHelper, Helper>();
                     services.AddSingleton<IGuessHelper, GuessHelper>();
+                    services.AddSingleton<IHotBallsHelper, HotBallsHelper>();
                 })
                 .Build();
 

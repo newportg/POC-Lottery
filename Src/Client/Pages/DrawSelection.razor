@@ -14,38 +14,14 @@ else
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>
-                    <span>Draw Number</span>
-                </th>
-
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball1"))">Ball1</span>
-                    <span class="fa @(GetSortStyle("Ball1"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball2"))">Ball2</span>
-                    <span class="fa @(GetSortStyle("Ball2"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball3"))">Ball3</span>
-                    <span class="fa @(GetSortStyle("Ball3"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball4"))">Ball4</span>
-                    <span class="fa @(GetSortStyle("Ball4"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Ball5"))">Ball5</span>
-                    <span class="fa @(GetSortStyle("Ball5"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Thunderball"))">Thunderball</span>
-                    <span class="fa @(GetSortStyle("Thunderball"))"></span>
-                </th>
-                <th>
-                    <span class="sort-link" @onclick="@(()=>SortTable("Total"))">Total</span>
-                    <span class="fa @(GetSortStyle("Total"))"></span>
-                </th>
+                <th>Draw Number</th>
+                <th>Ball1</th>
+                <th>Ball2</th>
+                <th>Ball3</th>
+                <th>Ball4</th>
+                <th>Ball5</th>
+                <th>Thunderball</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
@@ -94,7 +70,6 @@ else
 
 @code
 {
-    //List<int[]> tickets = new List<int[]>();
     List<Ticket> tickets = new List<Ticket>();
     List<KeyValuePair<int, int>> hot = new List<KeyValuePair<int, int>>();
     IList<Lottery> items = new List<Lottery>();
@@ -108,7 +83,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        items = await ThunderBallService.GetThunderballAsync();
         hotBalls = HotBalls( await ThunderBallService.GetHotBallsAsync());
         hotBallsLinear = HotBallsLinear(await ThunderBallService.GetHotBallsAsync());
         drawTotals = DrawTotals(await ThunderBallService.GetDrawTotalsAsync());
@@ -127,9 +101,11 @@ else
         ThunderBallService.SaveGuesses(tickets);
     }
 
-    public string HotBalls(Dictionary<int,int> dic)
+    public string HotBalls(List<HotBalls> hb)
     {
         string hotBalls;
+        var dic = hb[hb.Count - 1].Balls;
+
         hot = dic.OrderBy(x => x.Key).ToList();
 
         // Whats the lowest hot value
@@ -156,9 +132,11 @@ else
         return hotBalls;
     }
 
-    public string HotBallsLinear(Dictionary<int, int> dic)
+    public string HotBallsLinear(List<HotBalls> hb)
     {
         string hotBalls;
+        var dic = hb[hb.Count - 1].Balls;
+
         hot = dic.OrderBy(x => x.Key).ToList();
 
         // Whats the lowest hot value
@@ -275,7 +253,7 @@ else
         {
             //We need to force order by ascending on the new column
             //This line uses reflection and will probably perform inefficiently in a production environment.
-            items = items.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+            tickets = tickets.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
             CurrentSortColumn = columnName;
             IsSortedAscending = true;
 
@@ -284,11 +262,11 @@ else
         {
             if (IsSortedAscending)
             {
-                items = items.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                tickets = tickets.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
             }
             else
             {
-                items = items.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                tickets = tickets.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
             }
 
             //Toggle this boolean

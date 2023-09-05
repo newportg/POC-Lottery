@@ -1,4 +1,5 @@
 using System.Net;
+using Domain.Helpers;
 using Domain.Models;
 using Flurl.Util;
 using Microsoft.Azure.Functions.Worker;

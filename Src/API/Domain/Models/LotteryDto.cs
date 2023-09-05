@@ -12,11 +12,5 @@ namespace Domain.Models
         public string DrawNumber { get; set; }
         public List<int> Balls { get; set; }
         public List<int> BonusBalls { get; set; }
-
-        // Analysis
-        //public int BallTotal { get; set; }
-        //public int NumOddBalls { get; set; }
-        //public int[] RenatoGianellaPattern { get; set; }
-        //public int[] Delta { get; set; }
     }
 }

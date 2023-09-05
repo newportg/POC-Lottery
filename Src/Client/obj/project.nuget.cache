@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DBgtrX0mEexuEkWjCzQPiECRpWMDXhR+LS7yoMwmB/tmDQ1/zMkfFPDorh47mAzP0kR4hoeqepRb+Xmq458N1g==",
+  "dgSpecHash": "jt6NwN58hmlSjw4QqBKnPU2qYtriB2UC6yQ87iNLVsLoi2gIxDBfITe+Ya+CSvzlj4ybKMLBG9EAGzPcFWExgA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\Lottery.csproj",
+  "projectFilePath": "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\Client\\Lottery.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NEWPORTG\\.nuget\\packages\\flurl\\3.0.6\\flurl.3.0.6.nupkg.sha512",
     "C:\\Users\\NEWPORTG\\.nuget\\packages\\flurl.http\\3.2.4\\flurl.http.3.2.4.nupkg.sha512",

@@ -1,3 +1,4 @@
+using Domain.Helpers;
 using Domain.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;

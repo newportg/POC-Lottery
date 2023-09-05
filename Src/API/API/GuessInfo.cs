@@ -1,5 +1,6 @@
 using AutoMapper;
 using Azure;
+using Domain.Helpers;
 using Domain.Models;
 using FluentValidation;
 using Flurl.Http;
@@ -241,6 +242,41 @@ namespace API
                 var jsonToReturn = JsonConvert.SerializeObject(drawResult);
                 response.WriteString($"{jsonToReturn}");
 
+            }
+            catch (Exception ex)
+            {
+                response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString($"{ex.Message}");
+            }
+
+            return response;
+        }
+
+        [Function("NewGuess")]
+        [OpenApiOperation(operationId: "NewGuess", Description = "Guess")]
+        [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.InternalServerError, Description = "Configuration issue")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(List<Ticket>), Description = "The OK response")]
+        public HttpResponseData NewGuess([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Guess/NewGuess")] HttpRequestData req)
+        {
+            _logger.LogInformation("NewGuess :");
+            var response = req.CreateResponse();
+
+            if (_helper == null || _guesshelper == null)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.WriteString("GetTickets : _helper null");
+                return response;
+            }
+
+            try
+            {
+                var tickets = _guesshelper.NewGuess();
+
+                response.StatusCode = HttpStatusCode.OK;
+                response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+                var jsonToReturn = JsonConvert.SerializeObject(tickets);
+                response.WriteString($"{jsonToReturn}");
             }
             catch (Exception ex)
             {

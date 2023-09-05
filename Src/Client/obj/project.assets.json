@@ -245,11 +245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\Lottery.csproj",
+      "projectUniqueName": "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\Client\\Lottery.csproj",
       "projectName": "Lottery",
-      "projectPath": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\Lottery.csproj",
+      "projectPath": "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\Client\\Lottery.csproj",
       "packagesPath": "C:\\Users\\NEWPORTG\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\Client\\obj\\",
+      "outputPath": "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NEWPORTG\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -302,7 +302,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

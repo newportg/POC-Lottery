@@ -1,4 +1,5 @@
 using System.Net;
+using Domain.Helpers;
 using Domain.Models;
 using Library.Azure.Odata;
 using Microsoft.Azure.Functions.Worker;
@@ -66,6 +67,7 @@ namespace API
                 _logger.LogInformation($"Complete : {count}");
             }
 
+
             // Get draws
             List<Lottery> res = _helper.GetDraws(new ThunderBallEntity());
             List<Lottery> SortedList = res.OrderBy(o => int.Parse(o.DrawNumber)).ToList();
@@ -86,7 +88,8 @@ namespace API
                     CalculateStats(drawResult);
                 }
                 // generate guesses (current draw + 1)
-                var tickets = _helper.CreateTickets(int.Parse(lottery.DrawNumber));
+                //var tickets = _helper.CreateTickets(int.Parse(lottery.DrawNumber));
+                var tickets = _guesshelper.NewGuess(int.Parse(lottery.DrawNumber));
                 if ( tickets != null)
                     _guesshelper.SaveTickets(tickets);  
                 // EOL
@@ -97,8 +100,12 @@ namespace API
             {
                 _logger.LogInformation($"Guesses :{_stats.Guesses} Won : £{_stats.Win}");
                 _logger.LogInformation($"Wins Equal :{_stats.NoOfDrawsWhereReturnStake} Exceed :{_stats.NoOfDrawsWhereReturnMoreThanStake} LessThan : {_stats.NoOfDrawsWhereReturnLessThanStake} Win Less : {_stats.WinlessDraws}");
-                _logger.LogInformation($"Matches 0: {_stats.matchesZero} 1: {_stats.matchesOne} 2: {_stats.matchesTwo} 3: {_stats.matchesTwo} 4: {_stats.matchesTwo} 5: {_stats.matchesTwo}");
-                _logger.LogInformation($"Matches And Tball 1: {_stats.matchesOneAndTball} 3: {_stats.matchesThreeAndTball} 4: {_stats.matchesFourAndTball} 5: {_stats.matchesFiveAndTball}");
+                _logger.LogInformation($"Matches 0: {_stats.matchesZero} £ {_stats.matchesZeroWin} & Tball: {_stats.matchesZeroAndTball} £{_stats.matchesZeroAndTballWin}");
+                _logger.LogInformation($"Matches 1: {_stats.matchesOne} £ {_stats.matchesOneWin} & Tball: {_stats.matchesOneAndTball} £{_stats.matchesOneAndTballWin}");
+                _logger.LogInformation($"Matches 2: {_stats.matchesTwo} £ {_stats.matchesTwoWin} & Tball: {_stats.matchesTwoAndTball} £{_stats.matchesTwoAndTballWin}");
+                _logger.LogInformation($"Matches 3: {_stats.matchesThree} £ {_stats.matchesThreeWin} & Tball: {_stats.matchesThreeAndTball} £{_stats.matchesThreeAndTballWin}");
+                _logger.LogInformation($"Matches 4: {_stats.matchesFour} £ {_stats.matchesFourWin} & Tball: {_stats.matchesFourAndTball} £{_stats.matchesFourAndTballWin}");
+                _logger.LogInformation($"Matches 5: {_stats.matchesFive} £ {_stats.matchesFiveWin} & Tball: {_stats.matchesFiveAndTball} £{_stats.matchesFiveAndTballWin}");
             }
 
 
@@ -128,16 +135,18 @@ namespace API
                 thisguesses++;
 
                 var bd = Breakdown(item.GuessBall);
-                if( bd.Item1 == 0 && bd.Item2 == 0 ) _stats.matchesZero++;
-                if (bd.Item1 == 1 && bd.Item2 == 0) _stats.matchesOne++;
-                if (bd.Item1 == 1 && bd.Item2 == 0) _stats.matchesOneAndTball++;
-                if (bd.Item1 == 2 && bd.Item2 == 0) _stats.matchesTwo++;
-                if (bd.Item1 == 3 && bd.Item2 == 0) _stats.matchesThree++;
-                if (bd.Item1 == 3 && bd.Item2 == 0) _stats.matchesThreeAndTball++;
-                if (bd.Item1 == 4 && bd.Item2 == 0) _stats.matchesFour++;
-                if (bd.Item1 == 4 && bd.Item2 == 0) _stats.matchesFourAndTball++;
-                if (bd.Item1 == 5 && bd.Item2 == 0) _stats.matchesFive++;
-                if (bd.Item1 == 5 && bd.Item2 == 1) _stats.matchesFiveAndTball++;
+                if (bd.Item1 == 0 && bd.Item2 == 0) { _stats.matchesZero++; _stats.matchesZeroWin += bd.Item3; }
+                if (bd.Item1 == 0 && bd.Item2 == 1) { _stats.matchesZeroAndTball++; _stats.matchesZeroAndTballWin += bd.Item3; }
+                if (bd.Item1 == 1 && bd.Item2 == 0) { _stats.matchesOne++; _stats.matchesOneWin += bd.Item3; }
+                if (bd.Item1 == 1 && bd.Item2 == 1) { _stats.matchesOneAndTball++; _stats.matchesOneAndTballWin += bd.Item3; }
+                if (bd.Item1 == 2 && bd.Item2 == 0) { _stats.matchesTwo++; _stats.matchesTwoWin += bd.Item3; }
+                if (bd.Item1 == 2 && bd.Item2 == 1) { _stats.matchesTwoAndTball++; _stats.matchesTwoAndTballWin += bd.Item3; }
+                if (bd.Item1 == 3 && bd.Item2 == 0) { _stats.matchesThree++; _stats.matchesThreeWin += bd.Item3;}
+                if (bd.Item1 == 3 && bd.Item2 == 1) { _stats.matchesThreeAndTball++; _stats.matchesThreeAndTballWin += bd.Item3;}
+                if (bd.Item1 == 4 && bd.Item2 == 0) { _stats.matchesFour++; _stats.matchesFourWin += bd.Item3;}
+                if (bd.Item1 == 4 && bd.Item2 == 1) { _stats.matchesFourAndTball++; _stats.matchesFourAndTballWin += bd.Item3;}
+                if (bd.Item1 == 5 && bd.Item2 == 0) { _stats.matchesFive++; _stats.matchesFiveWin += bd.Item3;}
+                if (bd.Item1 == 5 && bd.Item2 == 1) { _stats.matchesFiveAndTball++; _stats.matchesFiveAndTballWin += bd.Item3;}
             }
 
             if (thiswin != 0 && thiswin == thisguesses)
@@ -150,17 +159,32 @@ namespace API
                 _stats.WinlessDraws++;
         }
 
-        private (int,int) Breakdown(GuessBall[] gb)
+        private (int,int, int) Breakdown(GuessBall[] gb)
         {
             int match = 0;
             int tball = 0;
+            var win = 0;
+
             foreach (var g in gb)
             {
                 if (g.Match && !g.Thunderball) { match++; }
                 if (g.Match && g.Thunderball) { tball++; }
             }
 
-            return (match,tball);
+            if (match == 0 && tball == 0) { win = 0; }
+            else if (match == 0 && tball == 1) { win = 3; }
+            else if (match == 1 && tball == 0) { win = 0; }
+            else if (match == 1 && tball == 1) { win = 5; }
+            else if (match == 2 && tball == 0) { win = 0; }
+            else if (match == 2 && tball == 1) { win = 10; }
+            else if (match == 3 && tball == 0) { win = 10; }
+            else if (match == 3 && tball == 1) { win = 20; }
+            else if (match == 4 && tball == 0) { win = 100; }
+            else if (match == 4 && tball == 1) { win = 250; }
+            else if (match == 5 && tball == 0) { win = 5000; }
+            else if (match == 5 && tball == 1) { win = 50000; }
+
+            return (match,tball, win);
         }
     }
 }

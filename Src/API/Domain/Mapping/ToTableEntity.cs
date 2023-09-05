@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Models;
+using Newtonsoft.Json;
 using System;
 
 namespace Domain.Mapping
@@ -30,6 +31,11 @@ namespace Domain.Mapping
                 .ForMember(dst => dst.Ball5, opt => opt.MapFrom(src => src.Balls[4]))
                 .ForMember(dst => dst.Thunderball, opt => opt.MapFrom(src => src.ThunderBall))
                 .ForMember(dst => dst.DrawNumber, opt => opt.MapFrom(src => src.DrawNumber));
+
+            CreateMap<HotBalls, HotBallsEntity>()
+                .ForMember(dst => dst.RowKey, opt => opt.MapFrom(src => src.DrawNumber))
+                .ForMember(dst => dst.Balls, opt => opt.MapFrom(src => Balls(src)))
+                .ForMember(dst => dst.DrawNumber, opt => opt.MapFrom(src => src.DrawNumber));
         }
 
         private string DrawDate(LotteryDto src)
@@ -44,6 +50,11 @@ namespace Domain.Mapping
             if (src.Balls == null)
                 return string.Empty;
             return src.Balls[idx].ToString();
+        }
+
+        private string Balls(HotBalls src)
+        {
+            return JsonConvert.SerializeObject(src.Balls);
         }
 
         private string BonusBall(int idx, LotteryDto src)

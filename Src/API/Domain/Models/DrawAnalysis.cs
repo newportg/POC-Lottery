@@ -19,8 +19,6 @@ namespace Domain.Models
             RGspreadCalc();
             RGGuessCalc();
         }
-
-
         private void RGspreadCalc()
         {
             if( Draws == null) { return; }
@@ -42,7 +40,6 @@ namespace Domain.Models
             RGspread = cnt;
             return;
         }
-
         private void RGGuessCalc()
         {
             // We make 9 guesses

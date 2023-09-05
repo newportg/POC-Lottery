@@ -12,8 +12,8 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "CsvHelper": "30.0.1",
           "Domain": "1.0.0",
-          "FluentValidation": "11.5.2",
-          "FluentValidation.DependencyInjectionExtensions": "11.5.2",
+          "FluentValidation": "11.7.1",
+          "FluentValidation.DependencyInjectionExtensions": "11.7.1",
           "Flurl": "3.0.7",
           "Flurl.Http": "3.2.4"
         },
@@ -52,23 +52,23 @@
           }
         }
       },
-      "FluentValidation/11.5.2": {
+      "FluentValidation/11.7.1": {
         "runtime": {
           "lib/net7.0/FluentValidation.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.5.2.0"
+            "fileVersion": "11.7.1.0"
           }
         }
       },
-      "FluentValidation.DependencyInjectionExtensions/11.5.2": {
+      "FluentValidation.DependencyInjectionExtensions/11.7.1": {
         "dependencies": {
-          "FluentValidation": "11.5.2",
+          "FluentValidation": "11.7.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.5.2.0"
+            "fileVersion": "11.7.1.0"
           }
         }
       },
@@ -93,10 +93,10 @@
           }
         }
       },
-      "Library.Azure.Odata/1.0.27": {
+      "Library.Azure.Odata/1.0.36": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "FluentValidation.DependencyInjectionExtensions": "11.5.2",
+          "FluentValidation.DependencyInjectionExtensions": "11.7.1",
           "Flurl.Http": "3.2.4",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.1",
@@ -296,11 +296,11 @@
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "CsvHelper": "30.0.1",
-          "FluentValidation": "11.5.2",
-          "FluentValidation.DependencyInjectionExtensions": "11.5.2",
+          "FluentValidation": "11.7.1",
+          "FluentValidation.DependencyInjectionExtensions": "11.7.1",
           "Flurl": "3.0.7",
           "Flurl.Http": "3.2.4",
-          "Library.Azure.Odata": "1.0.27",
+          "Library.Azure.Odata": "1.0.36",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.1",
           "Microsoft.Extensions.Logging.Console": "7.0.0"
@@ -338,19 +338,19 @@
       "path": "csvhelper/30.0.1",
       "hashPath": "csvhelper.30.0.1.nupkg.sha512"
     },
-    "FluentValidation/11.5.2": {
+    "FluentValidation/11.7.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kj/hW/iusp2zq1Vt1YPLgDj6UG0DhoJXGkLwjLwm3j7vUtRF8DVA5vHJfItG3BxDjLWJUR2pvw8fK7rnuysZNA==",
-      "path": "fluentvalidation/11.5.2",
-      "hashPath": "fluentvalidation.11.5.2.nupkg.sha512"
+      "sha512": "sha512-w9Al4gls6iVGFbTd/NPOPlwzqDTghH+ntL4c4FYUatc+LeybpIwhYArLykZJP/VjF2n3ihj3ws+1yd7KR5lQlg==",
+      "path": "fluentvalidation/11.7.1",
+      "hashPath": "fluentvalidation.11.7.1.nupkg.sha512"
     },
-    "FluentValidation.DependencyInjectionExtensions/11.5.2": {
+    "FluentValidation.DependencyInjectionExtensions/11.7.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ycibtdWdluIx0aTgQvO7Kjd5GjNRpD92z4/hEJc8u1luZ5ff1k0JpwPGmL+YFbPVYFk+A6gYIrVI4QdZfSJJdQ==",
-      "path": "fluentvalidation.dependencyinjectionextensions/11.5.2",
-      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.5.2.nupkg.sha512"
+      "sha512": "sha512-q3R6mJ0SzWvHJkJ/9d4FAZeuhJp6Cv8WpQItRWyN0v5qxKtwZt6Ol/8HNv8THDOrywTdsNUVKpgDJalVY7hUdw==",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.7.1",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.7.1.nupkg.sha512"
     },
     "Flurl/3.0.7": {
       "type": "package",
@@ -366,12 +366,12 @@
       "path": "flurl.http/3.2.4",
       "hashPath": "flurl.http.3.2.4.nupkg.sha512"
     },
-    "Library.Azure.Odata/1.0.27": {
+    "Library.Azure.Odata/1.0.36": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zGlduL0IXWeyCgIL59RYuiOaYceuxwKFY6GDlq/wwRYHm/TKEyZFyHwsHfHuuu8rLfonepjM+06OwkquWqXv2Q==",
-      "path": "library.azure.odata/1.0.27",
-      "hashPath": "library.azure.odata.1.0.27.nupkg.sha512"
+      "sha512": "sha512-ejKZARh8FH/bBX2nca5Oz98inw/uYeCOlQJkcv8SuMhBpz+7I38AqQpx7PtrbDXzxlYaWt3UJNtkT8d3vCpHjw==",
+      "path": "library.azure.odata/1.0.36",
+      "hashPath": "library.azure.odata.1.0.36.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",

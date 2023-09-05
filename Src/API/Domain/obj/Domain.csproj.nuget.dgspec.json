@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj": {}
+    "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj": {
+    "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\API\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\NEWPORTG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NEWPORTG\\source\\Personal\\Azure Functions\\POC-Lottery\\Src\\API\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\NEWPORTG\\source\\repos\\POC-Lottery\\Src\\API\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NEWPORTG\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,11 +54,11 @@
             },
             "FluentValidation": {
               "target": "Package",
-              "version": "[11.5.2, )"
+              "version": "[11.7.1, )"
             },
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
-              "version": "[11.5.2, )"
+              "version": "[11.7.1, )"
             },
             "Flurl": {
               "target": "Package",
@@ -70,7 +70,7 @@
             },
             "Library.Azure.Odata": {
               "target": "Package",
-              "version": "[1.0.27, )"
+              "version": "[1.0.36, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
@@ -101,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

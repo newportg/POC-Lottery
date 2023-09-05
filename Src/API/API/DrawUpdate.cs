@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Flurl.Http;
 using AdaptiveCards.Templating;
 using Azure;
+using Domain.Helpers;
 
 namespace API
 {
@@ -64,6 +65,8 @@ namespace API
                 {
                     var entity = _mapper.Map<ThunderBallEntity>(item);
                     _validator.ValidateAndThrow(entity);
+
+                    _logger.LogInformation(JsonConvert.SerializeObject(entity));
                     _repo.Upsert(entity);
                 }
 
