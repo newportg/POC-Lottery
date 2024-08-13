@@ -1,0 +1,18 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "11111111-2222-3333-4444-555555555555",
+    "LotteryDatabase": "UseDevelopmentStorage=true",
+    "AzureStorageAcct": "devstoreaccount1",
+    "AzureStorageKey": "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==",
+    "TableContainer": "ThunderBall",
+    "GuessContainer": "ThunderBallGuess",
+    "RegTestContainer": "RegressionTest",
+    "HotBallsContainer": "HotBalls",
+    "NeuLotteryContainer": "NeuLottery",
+    "TeamsWebhookNotification": "https://knightfrank.webhook.office.com/webhookb2/c0f5877a-7aed-4757-bc85-490332c10761@99d6a2d9-b626-40e9-822a-688a6cda5a94/IncomingWebhook/01c49b17e932479f91210c8a59394e4d/bf7352e7-942d-4676-8881-7a1f38e9656f"
+
+  }
+}
